@@ -1,0 +1,399 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="ConvocacaoFull" language="java" columnCount="1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1f690a3-5977-4467-85f8-6b0bcd5b7210">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Relação geral (classificação)"/>
+	<style name="Title" fontName="Arial" fontSize="26.0" bold="true"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18.0"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12.0" bold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12.0"/>
+	<query language="csv"><![CDATA[]]></query>
+	<field name="Campus" class="java.lang.String"/>
+	<field name="Curso" class="java.lang.String"/>
+	<field name="Turno" class="java.lang.String"/>
+	<field name="Inscrição" class="java.lang.String"/>
+	<field name="Nome" class="java.lang.String"/>
+	<field name="Situação do requerimento de matrícula" class="java.lang.String"/>
+	<field name="Nota final" class="java.lang.String"/>
+	<field name="Class ACP1" class="java.lang.String"/>
+	<field name="Cota do candidato" class="java.lang.String"/>
+	<field name="Class LI_EPP2" class="java.lang.String"/>
+	<field name="Class LI_PCDP3" class="java.lang.String"/>
+	<field name="Class LI_QP4" class="java.lang.String"/>
+	<field name="Class LI_PPIP5" class="java.lang.String"/>
+	<field name="Class LB_EPP6" class="java.lang.String"/>
+	<field name="Class LB_PCDP7" class="java.lang.String"/>
+	<field name="Class LB_QP8" class="java.lang.String"/>
+	<field name="Class LB_PPIP9" class="java.lang.String"/>
+	<sortField name="Campus"/>
+	<sortField name="Curso"/>
+	<sortField name="Turno"/>
+	<sortField name="Nome"/>
+	<group name="Group1" reprintHeaderOnEachPage="true" resetPageNumber="true" startNewPage="true">
+		<expression><![CDATA[$F{Campus}]]></expression>
+		<groupHeader>
+			<band height="144">
+				<element kind="image" uuid="6d4ca421-5487-4f99-ab33-5f5c97805eeb" stretchType="NoStretch" x="455" y="-1" width="100" height="71" linkType="None" linkTarget="Self" printInFirstWholeBand="true">
+					<expression><![CDATA[( $F{Campus}.equalsIgnoreCase("Curitiba") ? "https://raw.githubusercontent.com/alerario/report/master/png/ct.png" : 
+( $F{Campus}.equalsIgnoreCase("Apucarana") ? "https://raw.githubusercontent.com/alerario/report/master/png/ap.png" : 
+( $F{Campus}.equalsIgnoreCase("Campo Mourão") ? "https://raw.githubusercontent.com/alerario/report/master/png/cm.png" : 
+( $F{Campus}.equalsIgnoreCase("Dois Vizinhos") ? "https://raw.githubusercontent.com/alerario/report/master/png/dv.png" : 
+( $F{Campus}.equalsIgnoreCase("Londrina") ? "https://raw.githubusercontent.com/alerario/report/master/png/ld.png" : 
+( $F{Campus}.equalsIgnoreCase("Medianeira") ? "https://raw.githubusercontent.com/alerario/report/master/png/md.png" : 
+( $F{Campus}.equalsIgnoreCase("Pato Branco") ? "https://raw.githubusercontent.com/alerario/report/master/png/pb.png" : 
+( $F{Campus}.equalsIgnoreCase("Ponta Grossa") ? "https://raw.githubusercontent.com/alerario/report/master/png/pg.png" : 
+( $F{Campus}.equalsIgnoreCase("Santa Helena") ? "https://raw.githubusercontent.com/alerario/report/master/png/sh.png" : 
+( $F{Campus}.equalsIgnoreCase("Toledo") ? "https://raw.githubusercontent.com/alerario/report/master/png/td.png" : 
+( $F{Campus}.equalsIgnoreCase("Guarapuava") ? "https://raw.githubusercontent.com/alerario/report/master/png/gp.png" : 
+( $F{Campus}.equalsIgnoreCase("Francisco Beltrão") ? "https://raw.githubusercontent.com/alerario/report/master/png/fb.png" : 
+($F{Campus}.equalsIgnoreCase("Cornélio Procópio") ? "https://raw.githubusercontent.com/alerario/report/master/png/cp.png" : "https://raw.githubusercontent.com/alerario/report/master/png/ct.png")))))))))))))]]></expression>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="textField" uuid="58dcc1c6-1d3b-42b1-ab28-0ec976da8319" mode="Opaque" x="0" y="120" width="555" height="24" forecolor="#000000" backcolor="#F8FF2B" bold="true" hTextAlign="Center" style="SubTitle">
+					<expression><![CDATA[$F{Campus}]]></expression>
+				</element>
+				<element kind="image" uuid="993ec953-e765-411d-bded-71828e04a804" x="0" y="-1" width="105" height="71" linkType="None" linkTarget="Self">
+					<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/maisenem.png"]]></expression>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="staticText" uuid="0beb64ba-6da6-45fe-b357-d14d657fbdbf" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="555" height="50" backcolor="#F5F2F2" markup="none" fontSize="9.0" italic="true" hTextAlign="Justified" vTextAlign="Middle">
+					<text><![CDATA[Os candidatos convocados devem acessar a Plataforma de Matrícula, disponível em https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula, entre os dias 10 e 15 de julho. Devem seguir as orientações e enviar os documentos pessoais, acadêmicos e, quando apropriado, os comprovantes específicos da modalidade de cota em que foram aprovados (conforme listado no Anexo III deste edital).]]></text>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.25" lineStyle="Solid"/>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+				</element>
+				<element kind="staticText" uuid="367312c6-46ea-4d9e-9374-8313a94af203" key="" mode="Opaque" x="100" y="40" width="358" height="30" backcolor="#FFCB00" markup="none" fontSize="11.0" underline="false" bold="true" italic="false" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[LISTA DE ESPERA]]></text>
+				</element>
+				<element kind="staticText" uuid="09cd8005-62b5-4c8e-9052-577ed5462da0" key="" mode="Opaque" x="100" y="-1" width="358" height="42" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[EDITAL 12/2025 - PROGRAD
+PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="5"/>
+		</groupFooter>
+	</group>
+	<group name="Group2" reprintHeaderOnEachPage="true" startNewPage="true">
+		<expression><![CDATA[$F{Curso}]]></expression>
+		<groupHeader>
+			<band height="21">
+				<element kind="textField" uuid="cf9c2b3c-6127-4496-8523-a6d7c35267b5" x="1" y="0" width="543" height="20" fontSize="16.0" textAdjust="ScaleFont" bold="true" style="SubTitle">
+					<expression><![CDATA[$F{Curso}]]></expression>
+				</element>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Turno" reprintHeaderOnEachPage="true">
+		<expression><![CDATA[$F{Turno}]]></expression>
+		<groupHeader>
+			<band height="40">
+				<element kind="staticText" uuid="c803e7ab-460c-4aa4-9664-0b9e418f9d2c" x="20" y="20" width="60" height="13" bold="true">
+					<text><![CDATA[Inscrição]]></text>
+				</element>
+				<element kind="staticText" uuid="97209c04-da72-4528-af39-439fd6afc031" x="92" y="20" width="60" height="13" bold="true">
+					<text><![CDATA[Nome]]></text>
+				</element>
+				<element kind="textField" uuid="e751f2de-ab86-484a-b157-f534015349f5" mode="Opaque" x="0" y="0" width="300" height="20" backcolor="#F0F0F0" fontSize="14.0" italic="false" hTextAlign="Left">
+					<expression><![CDATA["       Turno: "+ $F{Turno} ]]></expression>
+				</element>
+				<element kind="staticText" uuid="84d7cb96-5a5d-4036-9496-be960eff2588" x="300" y="8" width="60" height="26" bold="true" hTextAlign="Center">
+					<text><![CDATA[Cota de inscrição]]></text>
+				</element>
+				<element kind="staticText" uuid="7847b593-402c-46a4-be16-b55ecea1f10f" x="370" y="0" width="15" height="37" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[AC]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="staticText" uuid="52ad7447-0393-4b7d-b2b9-197676710915" x="390" y="15" width="15" height="20" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[EP]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="648a578c-11f9-44c1-bbd6-9e77a353f9f7" x="410" y="15" width="15" height="20" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[PcD]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="1cf2124d-ea69-4184-8985-45e230361353" x="430" y="15" width="15" height="20" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[Q]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</element>
+				<element kind="staticText" uuid="dd0aba84-07f0-4c66-bcf6-4e48df08f131" x="450" y="15" width="15" height="20" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[PPI]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="a05fba59-3906-4707-8446-ec04cf10a738" x="470" y="15" width="15" height="20" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[EP]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="85043eaf-b85a-4565-a21f-fe0fb823483c" x="490" y="15" width="15" height="20" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[PcD]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="bcd3dfe4-f916-4f8b-b672-432c0fe7adb8" x="510" y="15" width="15" height="20" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[Q]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="dc2d4536-eed7-4f88-8e96-66e816dfefa0" x="530" y="15" width="15" height="20" rotation="Left" hTextAlign="Center">
+					<text><![CDATA[PPI]]></text>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="085b4a98-adf4-4913-a846-d059ea06d580" x="390" y="0" width="75" height="15" bold="true" hTextAlign="Center">
+					<text><![CDATA[LI]]></text>
+				</element>
+				<element kind="staticText" uuid="e66568e5-81bf-4830-9471-fdaa6dde555b" x="470" y="0" width="75" height="15" bold="true" hTextAlign="Center">
+					<text><![CDATA[LB]]></text>
+				</element>
+				<element kind="line" uuid="116627be-7cd5-4a86-93ba-3734fb1dc8af" positionType="FixRelativeToBottom" x="2" y="38" width="553" height="1">
+					<pen lineWidth="0.5" lineStyle="Double" lineColor="#999999"/>
+				</element>
+				<element kind="line" uuid="49c5c2a9-7fab-4eb5-9633-e8b7c0a644a4" x="554" y="0" width="1" height="40">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<pen lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="27818b21-219f-4f2f-a14f-727929bd2ec7" x="527" y="15" width="1" height="25">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="b69afa96-14ab-4eac-89f9-95070ded2cfd" x="507" y="15" width="1" height="25">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="a76bba9d-3d52-497f-8547-34a7ca083ee0" x="487" y="15" width="1" height="25">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="dac4267d-d0f5-4a84-8469-39a84acc2a32" x="467" y="0" width="1" height="40">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="cba28c09-8799-4331-9983-6388c81a2516" x="448" y="15" width="1" height="25">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="4cac1b05-28e1-4e83-bdb9-3c977acf83f5" x="427" y="15" width="1" height="25">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="31770d13-9c8d-4d68-b4e1-c58a323cd3e7" x="407" y="15" width="1" height="25">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="084a4c11-4274-4eec-a405-471c486b238e" x="387" y="0" width="1" height="40">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineStyle="Solid" lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="22a403c9-ecdf-4fa7-915e-3e1d6c423208" x="366" y="0" width="1" height="40">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<pen lineColor="#C9C9C9"/>
+				</element>
+				<element kind="line" uuid="53f0e92b-117b-4928-9db6-b44161363030" x="366" y="0" width="187" height="1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<pen lineColor="#C7BFBF"/>
+				</element>
+				<element kind="line" uuid="6a61b5e5-8ab0-4abe-a2a1-726d152b6f69" x="388" y="10" width="165" height="1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<pen lineStyle="Dotted" lineColor="#C7BFBF"/>
+				</element>
+			</band>
+		</groupHeader>
+	</group>
+	<background splitType="Stretch"/>
+	<title height="10" splitType="Stretch"/>
+	<pageHeader splitType="Stretch"/>
+	<columnHeader splitType="Stretch"/>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<element kind="textField" uuid="4b016540-6a92-4b17-b2e0-87466494f2a1" x="92" y="2" width="208" height="15" style="Detail">
+				<expression><![CDATA[$F{Nome}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e38e80a-728c-427d-b6e0-3303471a328c"/>
+			</element>
+			<element kind="textField" uuid="3447942d-6e49-4075-b6d2-7a705e1881ba" x="310" y="2" width="50" height="14" hTextAlign="Center">
+				<expression><![CDATA[$F{Cota do candidato}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d07100a9-717e-45ec-ace2-4d0957cf2130"/>
+			</element>
+			<element kind="line" uuid="401e0e59-de38-4dd2-8257-418cb489177c" positionType="FixRelativeToBottom" x="1" y="17" width="553" height="1">
+				<pen lineWidth="0.5" lineStyle="Double" lineColor="#999999"/>
+			</element>
+			<element kind="textField" uuid="33191051-c524-4d4d-9fbc-b1dd6567ab3d" x="10" y="2" width="100" height="14">
+				<expression><![CDATA[$F{Inscrição}]]></expression>
+			</element>
+			<element kind="textField" uuid="f108d86d-bad5-4fdd-b7f3-a33ed5ec8964" x="370" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class ACP1}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="textField" uuid="a1e5634a-d49b-415b-b5d1-08d90d018484" x="390" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class LI_EPP2}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="8665eac3-ff77-4f0b-9590-dd4659cbf91f" x="410" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class LI_PCDP3}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="9f7375e8-c115-4890-a59e-505bb53a4428" x="430" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class LI_QP4}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="83c66654-930d-461b-8e77-c7589389345b" x="450" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class LI_PPIP5}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="textField" uuid="1b0e3171-6022-41ef-b23e-66adc0fc1d78" x="470" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class LB_EPP6}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="textField" uuid="67ccdfdb-a2f9-44f6-9ccb-557a81a64ead" x="490" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class LB_PCDP7}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="ca1281a5-5066-4b61-8cc9-b7850ac7b78e" x="510" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class LB_QP8}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="ae023d04-032b-4841-9b94-824c03a0c847" x="530" y="2" width="15" height="15" hTextAlign="Center">
+				<expression><![CDATA[$F{Class LB_PPIP9}]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="d68227fa-78e9-47d1-abdd-331f6a9cf25b" x="366" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="41a3919b-ebbc-4380-9f12-1c9bb233de2d" x="387" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineStyle="Solid" lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="96a559f1-4fd0-4951-a8e7-6679fa5d2a1c" x="467" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="a0eda17f-7f7c-47b0-abf5-ec520d6c8df8" x="554" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="f3515285-3cd0-47f5-9b44-f5431e601c12" x="407" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="bb959187-308b-4e17-8a17-3af0c4ad4bdd" x="487" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="4cfbce17-2a67-4e02-b0cd-0b3520421c5b" x="507" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="f70a3434-78a6-4947-a1c6-99fc49b974a0" x="527" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="11fa3414-d02e-4835-8c71-6bfcecb8b239" x="448" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+			</element>
+			<element kind="line" uuid="467e90bb-7cda-434e-b2f8-b229743a8b5f" x="427" y="0" width="1" height="18">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineStyle="Dotted" lineColor="#C9C9C9"/>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter height="5" splitType="Stretch"/>
+	<pageFooter height="80" splitType="Stretch">
+		<element kind="textField" uuid="8c25c2e4-4b17-495c-a491-e009e19777a8" x="260" y="30" width="270" height="40" textAdjust="ScaleFont" linkType="None" linkTarget="Self" hTextAlign="Left">
+			<expression><![CDATA["Efetue agora o upload da documentaçào necessária em https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula"]]></expression>
+			<hyperlinkReferenceExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=104"]]></hyperlinkReferenceExpression>
+		</element>
+		<element kind="textField" uuid="deb23d85-47bb-4de6-978e-113ff117188c" x="461" y="1" width="90" height="20" fontSize="10.0" bold="false" hTextAlign="Right" style="Column header">
+			<expression><![CDATA["Página "+$V{PAGE_NUMBER}
+]]></expression>
+		</element>
+		<element kind="textField" uuid="5a79d2a0-bcde-4ad5-adf0-c4eb2066f6dd" x="0" y="2" width="190" height="20" fontSize="10.0" pattern="EEEEE dd MMMMM yyyy" bold="false" style="Column header">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="component" uuid="c80f019c-d985-4723-8473-f0369bc8a28d" x="180" y="6" width="79" height="72">
+			<component kind="barcode4j:QRCode">
+				<codeExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=104"]]></codeExpression>
+			</component>
+		</element>
+		<element kind="line" uuid="2a2e3fa3-fdc7-45b1-ad76-a6c4c5ff5c4e" positionType="FixRelativeToBottom" mode="Opaque" x="1" y="1" width="553" height="1" backcolor="#030303">
+			<pen lineWidth="0.5" lineStyle="Double" lineColor="#030303"/>
+		</element>
+		<element kind="textField" uuid="f18edbd7-e969-4852-9668-4b7484b6e529" x="180" y="9" width="78" height="65" linkType="Reference" linkTarget="Self" hTextAlign="Right">
+			<expression><![CDATA[""]]></expression>
+			<hyperlinkReferenceExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula"]]></hyperlinkReferenceExpression>
+			<hyperlinkTooltipExpression><![CDATA["Clique aqui para acessar o sistema de requerimento de matrícula"]]></hyperlinkTooltipExpression>
+		</element>
+		<element kind="textField" uuid="62fe9ebb-3681-4965-8e36-3f429938b4b7" x="1" y="30" width="190" height="20" fontSize="10.0" bold="false" style="Column header">
+			<expression><![CDATA["Curitiba, " + new SimpleDateFormat("dd").format(new java.util.Date()) + " de " +  new SimpleDateFormat("MMMM").format(new java.util.Date()) + " de " +  new SimpleDateFormat("YYYY").format(new java.util.Date())+"."]]></expression>
+		</element>
+	</pageFooter>
+	<summary splitType="Stretch"/>
+</jasperReport>
