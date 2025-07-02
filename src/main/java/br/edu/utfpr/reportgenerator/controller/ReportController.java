@@ -39,7 +39,6 @@ public class ReportController {
             @RequestParam("imageUrl") String imageUrl,
             @RequestParam("reportTitle") String reportTitle,
             @RequestParam("reportSubtitle") String reportSubtitle,
-            // Novos parâmetros adicionados aqui
             @RequestParam("matriculaUrl") String matriculaUrl,
             @RequestParam("instructionText") String instructionText,
             @RequestParam("footerUploadText") String footerUploadText,
@@ -51,12 +50,10 @@ public class ReportController {
         }
 
         try {
-            // Adiciona os novos valores ao mapa de parâmetros
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("P_IMAGE_URL", imageUrl);
             parameters.put("P_TITLE", reportTitle);
             parameters.put("P_SUBTITLE", reportSubtitle);
-            // Novos parâmetros
             parameters.put("P_MATRICULA_URL", matriculaUrl);
             parameters.put("P_INSTRUCTION_TEXT", instructionText);
             parameters.put("P_FOOTER_UPLOAD_TEXT", footerUploadText);
