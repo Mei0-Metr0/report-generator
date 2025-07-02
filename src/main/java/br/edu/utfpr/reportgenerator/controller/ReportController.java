@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 public class ReportController {
 
@@ -24,7 +27,6 @@ public class ReportController {
 
     @GetMapping("/")
     public String homePage(Model model) {
-        // Adiciona os tipos de processo seletivo e relatórios ao modelo para o Thymeleaf usar
         model.addAttribute("selectionProcesses", new String[]{"+Enem", "Vestibular", "PSS", "SiSU"});
         model.addAttribute("reportTypes", ReportType.values());
         return "index";
@@ -34,6 +36,9 @@ public class ReportController {
     public ResponseEntity<?> generateReport(
             @RequestParam("reportType") String reportTypeName,
             @RequestParam("csvFile") MultipartFile file,
+            @RequestParam("imageUrl") String imageUrl,         // Novo parâmetro
+            @RequestParam("reportTitle") String reportTitle,   // Novo parâmetro
+            @RequestParam("reportSubtitle") String reportSubtitle, // Novo parâmetro
             RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
@@ -42,8 +47,15 @@ public class ReportController {
         }
 
         try {
+            // Cria um mapa para os parâmetros do relatório
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("P_IMAGE_URL", imageUrl);
+            parameters.put("P_TITLE", reportTitle);
+            parameters.put("P_SUBTITLE", reportSubtitle);
+
             ReportType reportType = ReportType.valueOf(reportTypeName);
-            byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream());
+            // Passa o mapa de parâmetros para o serviço
+            byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters);
 
             String filename = reportType.name().toLowerCase() + "_report.pdf";
 

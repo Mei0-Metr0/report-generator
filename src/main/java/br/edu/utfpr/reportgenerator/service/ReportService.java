@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
+import java.util.Map; // Importa a classe Map
 
 @Service
 public class ReportService {
 
-    public byte[] generatePdfReport(ReportType reportType, InputStream csvInputStream) throws JRException, UnsupportedEncodingException {
+    // Assinatura do método atualizada para aceitar o mapa de parâmetros
+    public byte[] generatePdfReport(ReportType reportType, InputStream csvInputStream, Map<String, Object> parameters) throws JRException, UnsupportedEncodingException {
         // 1. Carrega o arquivo .jrxml do classpath
         InputStream jrxmlStream = getClass().getClassLoader().getResourceAsStream(reportType.getJrxmlPath());
         if (jrxmlStream == null) {
@@ -25,11 +26,10 @@ public class ReportService {
         // 3. Cria a fonte de dados (DataSource) a partir do CSV
         JRCsvDataSource dataSource = new JRCsvDataSource(csvInputStream, "ISO-8859-1");
         dataSource.setFieldDelimiter(';');
-        dataSource.setUseFirstRowAsHeader(true); // Usa a primeira linha como cabeçalho
+        dataSource.setUseFirstRowAsHeader(true);
 
-        // 4. Preenche o relatório com os dados
-        // O terceiro argumento (parameters) pode ser usado para passar valores únicos, como títulos dinâmicos
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), dataSource);
+        // 4. Preenche o relatório com os dados e os PARÂMETROS
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
         // 5. Exporta o relatório preenchido para PDF (em memória)
         return JasperExportManager.exportReportToPdf(jasperPrint);

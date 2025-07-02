@@ -1,6 +1,9 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
 <jasperReport name="MaiorMenor" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b11a5822-dfea-45d1-9485-fc657b5db229">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Maiores e menores notas até a 1ª chamada"/>
+	<parameter name="P_IMAGE_URL" class="java.lang.String"/>
+	<parameter name="P_TITLE" class="java.lang.String"/>
+	<parameter name="P_SUBTITLE" class="java.lang.String"/>
 	<query language="csv"><![CDATA[]]></query>
 	<field name="Campus" class="java.lang.String"/>
 	<field name="Grau" class="java.lang.String"/>
@@ -51,7 +54,7 @@
 	<pageHeader splitType="Stretch"/>
 	<columnHeader height="102" splitType="Stretch">
 		<element kind="image" uuid="31952c2f-3f49-46d2-aaa6-bbdb3991cc48" x="-1" y="0" width="105" height="71" linkType="None" linkTarget="Self">
-			<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/maisenem.png"]]></expression>
+			<expression><![CDATA[$P{P_IMAGE_URL}]]></expression>
 			<property name="com.jaspersoft.studio.unit.y" value="px"/>
 		</element>
 		<element kind="image" uuid="28614b4a-3939-4a87-8071-f0f2d906d8d3" positionType="Float" stretchType="ElementGroupBottom" x="449" y="1" width="105" height="99" printInFirstWholeBand="true">
@@ -74,12 +77,11 @@
 			<expression><![CDATA[$F{Campus}]]></expression>
 			<property name="com.jaspersoft.studio.unit.y" value="px"/>
 		</element>
-		<element kind="staticText" uuid="7da0426e-22f6-494b-bd43-82017065840b" key="" mode="Opaque" x="99" y="48" width="350" height="22" backcolor="#FFCB00" markup="none" fontSize="11.0" underline="false" bold="true" italic="false" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[MAIORES E MENORES NOTAS]]></text>
+		<element kind="textField" uuid="7da0426e-22f6-494b-bd43-82017065840b" key="" mode="Opaque" x="99" y="48" width="350" height="22" backcolor="#FFCB00" markup="none" fontSize="11.0" underline="false" bold="true" italic="false" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_SUBTITLE}]]></expression>
 		</element>
-		<element kind="staticText" uuid="8e94f4c9-a31f-4a70-a1d0-cf77e10960d4" key="" mode="Opaque" x="99" y="0" width="350" height="48" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[EDITAL 12/2025 - PROGRAD
-PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
+		<element kind="textField" uuid="8e94f4c9-a31f-4a70-a1d0-cf77e10960d4" key="" mode="Opaque" x="99" y="0" width="350" height="48" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_TITLE}]]></expression>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<property name="com.jaspersoft.studio.unit.y" value="px"/>
 		</element>

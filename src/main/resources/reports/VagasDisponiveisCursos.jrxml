@@ -10,6 +10,9 @@
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
 		</conditionalStyle>
 	</style>
+	<parameter name="P_IMAGE_URL" class="java.lang.String"/>
+	<parameter name="P_TITLE" class="java.lang.String"/>
+	<parameter name="P_SUBTITLE" class="java.lang.String"/>
 	<query language="csv"><![CDATA[]]></query>
 	<field name="Campus" class="java.lang.String"/>
 	<field name="Grau" class="java.lang.String"/>
@@ -111,13 +114,13 @@
 	<pageHeader splitType="Stretch"/>
 	<columnHeader height="88" splitType="Stretch">
 		<element kind="image" uuid="fe0f56e6-026f-4889-84c2-c09eb95735dc" x="1" y="1" width="105" height="69" linkType="None" linkTarget="Self">
-			<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/maisenem.png"]]></expression>
+			<expression><![CDATA[$P{P_IMAGE_URL}]]></expression>
 		</element>
-		<element kind="staticText" uuid="1ae24bfb-3cb1-4c6d-83cf-92d106408867" key="" mode="Opaque" x="105" y="1" width="695" height="40" forecolor="#030000" backcolor="#FFCB00" markup="none" fontSize="29.0" hTextAlign="Center" vTextAlign="Middle" style="Title">
-			<text><![CDATA[Vagas Disponíveis]]></text>
+		<element kind="textField" uuid="1ae24bfb-3cb1-4c6d-83cf-92d106408867" key="" mode="Opaque" x="105" y="1" width="695" height="40" forecolor="#030000" backcolor="#FFCB00" markup="none" fontSize="29.0" hTextAlign="Center" vTextAlign="Middle" style="Title">
+			<expression><![CDATA[$P{P_TITLE}]]></expression>
 		</element>
-		<element kind="staticText" uuid="fb109148-ff9c-4482-b2a5-6173e270d24c" stretchType="NoStretch" mode="Opaque" x="105" y="40" width="695" height="20" backcolor="#F5F2F2" markup="none" fontSize="9.0" italic="true">
-			<text><![CDATA[bla bla bla]]></text>
+		<element kind="textField" uuid="fb109148-ff9c-4482-b2a5-6173e270d24c" stretchType="NoStretch" mode="Opaque" x="105" y="40" width="695" height="20" backcolor="#F5F2F2" markup="none" fontSize="9.0" italic="true">
+			<expression><![CDATA[$P{P_SUBTITLE}]]></expression>
 			<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 				<pen lineWidth="0.25" lineStyle="Solid"/>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

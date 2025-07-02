@@ -8,6 +8,9 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18.0"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12.0" bold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12.0"/>
+	<parameter name="P_IMAGE_URL" class="java.lang.String"/>
+	<parameter name="P_TITLE" class="java.lang.String"/>
+	<parameter name="P_SUBTITLE" class="java.lang.String"/>
 	<query language="csv"><![CDATA[]]></query>
 	<field name="Campus" class="java.lang.String"/>
 	<field name="Curso" class="java.lang.String"/>
@@ -56,7 +59,7 @@
 					<expression><![CDATA[$F{Campus}]]></expression>
 				</element>
 				<element kind="image" uuid="993ec953-e765-411d-bded-71828e04a804" x="0" y="-1" width="105" height="71" linkType="None" linkTarget="Self">
-					<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/maisenem.png"]]></expression>
+					<expression><![CDATA[$P{P_IMAGE_URL}]]></expression>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</element>
 				<element kind="staticText" uuid="0beb64ba-6da6-45fe-b357-d14d657fbdbf" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="555" height="50" backcolor="#F5F2F2" markup="none" fontSize="9.0" italic="true" hTextAlign="Justified" vTextAlign="Middle">
@@ -69,12 +72,11 @@
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 				</element>
-				<element kind="staticText" uuid="367312c6-46ea-4d9e-9374-8313a94af203" key="" mode="Opaque" x="100" y="40" width="358" height="30" backcolor="#FFCB00" markup="none" fontSize="11.0" underline="false" bold="true" italic="false" hTextAlign="Center" vTextAlign="Middle">
-					<text><![CDATA[LISTA DE ESPERA]]></text>
+				<element kind="textField" uuid="367312c6-46ea-4d9e-9374-8313a94af203" key="" mode="Opaque" x="100" y="40" width="358" height="30" backcolor="#FFCB00" markup="none" fontSize="11.0" underline="false" bold="true" italic="false" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$P{P_SUBTITLE}]]></expression>
 				</element>
-				<element kind="staticText" uuid="09cd8005-62b5-4c8e-9052-577ed5462da0" key="" mode="Opaque" x="100" y="-1" width="358" height="42" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
-					<text><![CDATA[EDITAL 12/2025 - PROGRAD
-PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
+				<element kind="textField" uuid="09cd8005-62b5-4c8e-9052-577ed5462da0" key="" mode="Opaque" x="100" y="-1" width="358" height="42" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$P{P_TITLE}]]></expression>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</element>
 			</band>
