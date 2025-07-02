@@ -11,6 +11,9 @@
 	<parameter name="P_IMAGE_URL" class="java.lang.String"/>
 	<parameter name="P_TITLE" class="java.lang.String"/>
 	<parameter name="P_SUBTITLE" class="java.lang.String"/>
+	<parameter name="P_INSTRUCTION_TEXT" class="java.lang.String"/>
+	<parameter name="P_MATRICULA_URL" class="java.lang.String"/>
+	<parameter name="P_FOOTER_UPLOAD_TEXT" class="java.lang.String"/>
 	<query language="csv"><![CDATA[]]></query>
 	<field name="Campus" class="java.lang.String"/>
 	<field name="Curso" class="java.lang.String"/>
@@ -62,8 +65,8 @@
 					<expression><![CDATA[$P{P_IMAGE_URL}]]></expression>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</element>
-				<element kind="staticText" uuid="0beb64ba-6da6-45fe-b357-d14d657fbdbf" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="555" height="50" backcolor="#F5F2F2" markup="none" fontSize="9.0" italic="true" hTextAlign="Justified" vTextAlign="Middle">
-					<text><![CDATA[Os candidatos convocados devem acessar a Plataforma de Matrícula, disponível em https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula, entre os dias 10 e 15 de julho. Devem seguir as orientações e enviar os documentos pessoais, acadêmicos e, quando apropriado, os comprovantes específicos da modalidade de cota em que foram aprovados (conforme listado no Anexo III deste edital).]]></text>
+				<element kind="textField" uuid="0beb64ba-6da6-45fe-b357-d14d657fbdbf" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="555" height="50" backcolor="#F5F2F2" markup="none" fontSize="9.0" italic="true" hTextAlign="Justified" vTextAlign="Middle">
+					<expression><![CDATA[$P{P_INSTRUCTION_TEXT}]]></expression>
 					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 						<pen lineWidth="0.25" lineStyle="Solid"/>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -370,8 +373,8 @@
 	<columnFooter height="5" splitType="Stretch"/>
 	<pageFooter height="80" splitType="Stretch">
 		<element kind="textField" uuid="8c25c2e4-4b17-495c-a491-e009e19777a8" x="260" y="30" width="270" height="40" textAdjust="ScaleFont" linkType="None" linkTarget="Self" hTextAlign="Left">
-			<expression><![CDATA["Efetue agora o upload da documentaçào necessária em https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula"]]></expression>
-			<hyperlinkReferenceExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=104"]]></hyperlinkReferenceExpression>
+			<expression><![CDATA[$P{P_FOOTER_UPLOAD_TEXT} + " " + $P{P_MATRICULA_URL}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_MATRICULA_URL}]]></hyperlinkReferenceExpression>
 		</element>
 		<element kind="textField" uuid="deb23d85-47bb-4de6-978e-113ff117188c" x="461" y="1" width="90" height="20" fontSize="10.0" bold="false" hTextAlign="Right" style="Column header">
 			<expression><![CDATA["Página "+$V{PAGE_NUMBER}
@@ -382,7 +385,7 @@
 		</element>
 		<element kind="component" uuid="c80f019c-d985-4723-8473-f0369bc8a28d" x="180" y="6" width="79" height="72">
 			<component kind="barcode4j:QRCode">
-				<codeExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=104"]]></codeExpression>
+				<codeExpression><![CDATA[$P{P_MATRICULA_URL}]]></codeExpression>
 			</component>
 		</element>
 		<element kind="line" uuid="2a2e3fa3-fdc7-45b1-ad76-a6c4c5ff5c4e" positionType="FixRelativeToBottom" mode="Opaque" x="1" y="1" width="553" height="1" backcolor="#030303">
@@ -390,7 +393,7 @@
 		</element>
 		<element kind="textField" uuid="f18edbd7-e969-4852-9668-4b7484b6e529" x="180" y="9" width="78" height="65" linkType="Reference" linkTarget="Self" hTextAlign="Right">
 			<expression><![CDATA[""]]></expression>
-			<hyperlinkReferenceExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula"]]></hyperlinkReferenceExpression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_MATRICULA_URL}]]></hyperlinkReferenceExpression>
 			<hyperlinkTooltipExpression><![CDATA["Clique aqui para acessar o sistema de requerimento de matrícula"]]></hyperlinkTooltipExpression>
 		</element>
 		<element kind="textField" uuid="62fe9ebb-3681-4965-8e36-3f429938b4b7" x="1" y="30" width="190" height="20" fontSize="10.0" bold="false" style="Column header">
