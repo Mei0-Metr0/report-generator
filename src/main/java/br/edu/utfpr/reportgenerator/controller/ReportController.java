@@ -27,6 +27,7 @@ public class ReportController {
 
     @GetMapping("/")
     public String homePage(Model model) {
+        // Adiciona os processos seletivos e tipos de relatório ao modelo
         model.addAttribute("selectionProcesses", new String[]{"+Enem", "Vestibular", "PSS", "SiSU"});
         model.addAttribute("reportTypes", ReportType.values());
         return "index";
@@ -36,12 +37,15 @@ public class ReportController {
     public ResponseEntity<?> generateReport(
             @RequestParam("reportType") String reportTypeName,
             @RequestParam("csvFile") MultipartFile file,
-            @RequestParam("imageUrl") String imageUrl,
             @RequestParam("reportTitle") String reportTitle,
             @RequestParam("reportSubtitle") String reportSubtitle,
-            @RequestParam("matriculaUrl") String matriculaUrl,
-            @RequestParam("instructionText") String instructionText,
-            @RequestParam("footerUploadText") String footerUploadText,
+            @RequestParam("explanationText") String explanationText,
+            @RequestParam("utfprLogoUrl") String utfprLogoUrl,
+            @RequestParam("processLogoUrl") String processLogoUrl,
+            @RequestParam("defaultCampusImgUrl") String defaultCampusImgUrl,
+            @RequestParam(value = "showFooterDate", required = false) boolean showFooterDate,
+            @RequestParam("footerText") String footerText,
+            @RequestParam("qrCodeUrl") String qrCodeUrl,
             RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
@@ -51,12 +55,16 @@ public class ReportController {
 
         try {
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("P_IMAGE_URL", imageUrl);
             parameters.put("P_TITLE", reportTitle);
             parameters.put("P_SUBTITLE", reportSubtitle);
-            parameters.put("P_MATRICULA_URL", matriculaUrl);
-            parameters.put("P_INSTRUCTION_TEXT", instructionText);
-            parameters.put("P_FOOTER_UPLOAD_TEXT", footerUploadText);
+            parameters.put("P_EXPLANATION_TEXT", explanationText);
+            parameters.put("P_UTFPR_LOGO_URL", utfprLogoUrl);
+            parameters.put("P_PROCESS_LOGO_URL", processLogoUrl);
+            parameters.put("P_DEFAULT_CAMPUS_IMG_URL", defaultCampusImgUrl);
+            parameters.put("P_SHOW_FOOTER_DATE", showFooterDate);
+            parameters.put("P_FOOTER_TEXT", footerText);
+            parameters.put("P_QR_CODE_URL", qrCodeUrl);
+
 
             ReportType reportType = ReportType.valueOf(reportTypeName);
             byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters);

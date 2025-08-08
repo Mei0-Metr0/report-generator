@@ -13,6 +13,7 @@
 	<parameter name="P_IMAGE_URL" class="java.lang.String"/>
 	<parameter name="P_TITLE" class="java.lang.String"/>
 	<parameter name="P_SUBTITLE" class="java.lang.String"/>
+	<parameter name="P_SHOW_FOOTER_DATE" class="java.lang.Boolean"/>
 	<query language="csv"><![CDATA[]]></query>
 	<field name="Campus" class="java.lang.String"/>
 	<field name="Grau" class="java.lang.String"/>

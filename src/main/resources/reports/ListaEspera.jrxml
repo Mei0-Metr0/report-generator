@@ -14,6 +14,7 @@
 	<parameter name="P_INSTRUCTION_TEXT" class="java.lang.String"/>
 	<parameter name="P_MATRICULA_URL" class="java.lang.String"/>
 	<parameter name="P_FOOTER_UPLOAD_TEXT" class="java.lang.String"/>
+	<parameter name="P_SHOW_FOOTER_DATE" class="java.lang.Boolean"/>
 	<query language="csv"><![CDATA[]]></query>
 	<field name="Campus" class="java.lang.String"/>
 	<field name="Curso" class="java.lang.String"/>
