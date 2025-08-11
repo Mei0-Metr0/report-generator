@@ -46,20 +46,19 @@
 		<groupHeader>
 			<band height="144">
 				<element kind="image" uuid="6d4ca421-5487-4f99-ab33-5f5c97805eeb" x="458" y="-1" width="94" height="81" printInFirstWholeBand="true">
-					<expression><![CDATA[( $F{Campus}.equalsIgnoreCase("Curitiba") ? "https://raw.githubusercontent.com/alerario/report/master/png/ct.png" :
-( $F{Campus}.equalsIgnoreCase("Apucarana") ? "https://raw.githubusercontent.com/alerario/report/master/png/ap.png" :
-( $F{Campus}.equalsIgnoreCase("Campo Mourão") ? "https://raw.githubusercontent.com/alerario/report/master/png/cm.png" :
-( $F{Campus}.equalsIgnoreCase("Dois Vizinhos") ? "https://raw.githubusercontent.com/alerario/report/master/png/dv.png" :
-( $F{Campus}.equalsIgnoreCase("Londrina") ? "https://raw.githubusercontent.com/alerario/report/master/png/ld.png" :
-( $F{Campus}.equalsIgnoreCase("Medianeira") ? "https://raw.githubusercontent.com/alerario/report/master/png/md.png" :
-( $F{Campus}.equalsIgnoreCase("Pato Branco") ? "https://raw.githubusercontent.com/alerario/report/master/png/pb.png" :
-( $F{Campus}.equalsIgnoreCase("Ponta Grossa") ? "https://raw.githubusercontent.com/alerario/report/master/png/pg.png" :
-( $F{Campus}.equalsIgnoreCase("Santa Helena") ? "https://raw.githubusercontent.com/alerario/report/master/png/sh.png" :
-( $F{Campus}.equalsIgnoreCase("Toledo") ? "https://raw.githubusercontent.com/alerario/report/master/png/td.png" :
-( $F{Campus}.equalsIgnoreCase("Guarapuava") ? "https://raw.githubusercontent.com/alerario/report/master/png/gp.png" :
-( $F{Campus}.equalsIgnoreCase("Francisco Beltrão") ? "https://raw.githubusercontent.com/alerario/report/master/png/fb.png" :
-($F{Campus}.equalsIgnoreCase("Cornélio Procópio") ? "https://raw.githubusercontent.com/alerario/report/master/png/cp.png" : $P{P_DEFAULT_CAMPUS_IMG_URL})))))))))))))]]></expression>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<expression><![CDATA[( $F{Campus}.equalsIgnoreCase("Curitiba") ? "images/campi/ct.png" :
+( $F{Campus}.equalsIgnoreCase("Apucarana") ? "images/campi/ap.png" :
+( $F{Campus}.equalsIgnoreCase("Campo Mourão") ? "images/campi/cm.png" :
+( $F{Campus}.equalsIgnoreCase("Dois Vizinhos") ? "images/campi/dv.png" :
+( $F{Campus}.equalsIgnoreCase("Londrina") ? "images/campi/ld.png" :
+( $F{Campus}.equalsIgnoreCase("Medianeira") ? "images/campi/md.png" :
+( $F{Campus}.equalsIgnoreCase("Pato Branco") ? "images/campi/pb.png" :
+( $F{Campus}.equalsIgnoreCase("Ponta Grossa") ? "images/campi/pg.png" :
+( $F{Campus}.equalsIgnoreCase("Santa Helena") ? "images/campi/sh.png" :
+( $F{Campus}.equalsIgnoreCase("Toledo") ? "images/campi/td.png" :
+( $F{Campus}.equalsIgnoreCase("Guarapuava") ? "images/campi/gp.png" :
+( $F{Campus}.equalsIgnoreCase("Francisco Beltrão") ? "images/campi/fb.png" :
+( $F{Campus}.equalsIgnoreCase("Cornélio Procópio") ? "images/campi/cp.png" : $P{P_DEFAULT_CAMPUS_IMG_URL} )))))))))))))]]></expression>
 				</element>
 				<element kind="textField" uuid="58dcc1c6-1d3b-42b1-ab28-0ec976da8319" mode="Opaque" x="0" y="120" width="553" height="24" forecolor="#000000" backcolor="#F8FF2B" bold="true" hTextAlign="Center" style="SubTitle">
 					<expression><![CDATA[$F{Campus}]]></expression>

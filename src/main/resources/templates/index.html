@@ -44,7 +44,7 @@
         <div class="section">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="selectionProcess">Processo Seletivo:</label>
+                    <label for="selectionProcess">Processo Seletivo (Contexto):</label>
                     <select id="selectionProcess" name="selectionProcess">
                         <option th:each="process : ${selectionProcesses}" th:value="${process}" th:text="${process}"></option>
                     </select>
@@ -60,6 +60,18 @@
                         </option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="imageSet">Tema Visual do Relatório:</label>
+                    <select id="imageSet" name="imageSetId" required>
+                        <option value="" disabled selected>-- Escolha um tema --</option>
+                        <option th:each="set : ${imageSets}"
+                                th:value="${set.id()}"
+                                th:text="${set.displayName()}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
                 <div id="required-fields-box" class="form-group">
                     <h4>Campos Obrigatórios no CSV:</h4>
                     <ul id="required-fields-list"></ul>
@@ -89,39 +101,25 @@
                 <label for="explanationText">Explicação do Relatório (aceita HTML):</label>
                 <textarea id="explanationText" name="explanationText" rows="4" placeholder="Ex: <b>Prezados candidatos</b>, sigam as orientações abaixo..."></textarea>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="utfprLogoUrl">Logo da UTFPR:</label>
-                    <input type="url" id="utfprLogoUrl" name="utfprLogoUrl" value="https://raw.githubusercontent.com/alerario/report/master/png/utfpr.png" required>
-                </div>
-                <div class="form-group">
-                    <label for="processLogoUrl">Logo do Processo:</label>
-                    <input type="url" id="processLogoUrl" name="processLogoUrl" required >
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="defaultCampusImgUrl">URL Imagem Padrão dos Campi (fallback):</label>
-                <input type="url" id="defaultCampusImgUrl" name="defaultCampusImgUrl" value="https://raw.githubusercontent.com/alerario/report/master/png/ct.png" required>
-                <small>Esta imagem será usada se um campus do CSV não for reconhecido.</small>
-            </div>
+
         </div>
 
         <hr class="section-divider">
 
         <div class="section">
-            <div class="form-row">
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="showFooterDate" name="showFooterDate" value="true" checked>
-                    <label for="showFooterDate">Exibir data no rodapé</label>
-                </div>
-                <div class="form-group">
-                    <label for="footerText">Texto no Rodapé:</label>
-                    <input type="text" id="footerText" name="footerText" placeholder="Efetue agora o upload da documentação necessária em:">
-                </div>
-                <div class="form-group">
-                    <label for="qrCodeUrl">URL para Link e QR Code do Rodapé:</label>
-                    <input type="url" id="qrCodeUrl" name="qrCodeUrl" placeholder="https://sistemas.utfpr.edu.br/...">
-                </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="showFooterDate" name="showFooterDate" value="true" checked>
+                <label for="showFooterDate">Exibir data no rodapé</label>
+            </div>
+
+            <div class="form-group">
+                <label for="footerText">Texto no Rodapé:</label>
+                <textarea id="footerText" name="footerText" rows="3" placeholder="Ex: Efetue agora o upload da documentação necessária através do Portal do Candidato."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="qrCodeUrl">URL para Link e QR Code do Rodapé:</label>
+                <input type="url" id="qrCodeUrl" name="qrCodeUrl" placeholder="https://sistemas.utfpr.edu.br/...">
             </div>
         </div>
 

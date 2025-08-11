@@ -1,6 +1,8 @@
 package br.edu.utfpr.reportgenerator.controller;
 
+import br.edu.utfpr.reportgenerator.model.ImageSet;
 import br.edu.utfpr.reportgenerator.model.ReportType;
+import br.edu.utfpr.reportgenerator.service.ImageSetService;
 import br.edu.utfpr.reportgenerator.service.ReportService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,16 +22,19 @@ import java.util.Map;
 public class ReportController {
 
     private final ReportService reportService;
+    private final ImageSetService imageSetService; // Injeta o novo serviço
 
-    public ReportController(ReportService reportService) {
+    public ReportController(ReportService reportService, ImageSetService imageSetService) {
         this.reportService = reportService;
+        this.imageSetService = imageSetService;
     }
 
     @GetMapping("/")
     public String homePage(Model model) {
-        // Adiciona os processos seletivos e tipos de relatório ao modelo
         model.addAttribute("selectionProcesses", new String[]{"+Enem", "Vestibular", "PSS", "SiSU"});
         model.addAttribute("reportTypes", ReportType.values());
+        // Adiciona a lista de temas de imagem ao modelo para popular a ComboBox
+        model.addAttribute("imageSets", imageSetService.getAvailableImageSets());
         return "index";
     }
 
@@ -40,9 +45,7 @@ public class ReportController {
             @RequestParam("reportTitle") String reportTitle,
             @RequestParam("reportSubtitle") String reportSubtitle,
             @RequestParam("explanationText") String explanationText,
-            @RequestParam("utfprLogoUrl") String utfprLogoUrl,
-            @RequestParam("processLogoUrl") String processLogoUrl,
-            @RequestParam("defaultCampusImgUrl") String defaultCampusImgUrl,
+            @RequestParam("imageSetId") String imageSetId, // Recebe o ID do tema escolhido
             @RequestParam(value = "showFooterDate", required = false) boolean showFooterDate,
             @RequestParam("footerText") String footerText,
             @RequestParam("qrCodeUrl") String qrCodeUrl,
@@ -53,18 +56,24 @@ public class ReportController {
             return ResponseEntity.status(302).header(HttpHeaders.LOCATION, "/").build();
         }
 
+        // Busca o conjunto de imagens selecionado pelo ID
+        ImageSet selectedImageSet = imageSetService.findById(imageSetId)
+                .orElseThrow(() -> new IllegalArgumentException("Conjunto de imagens inválido: " + imageSetId));
+
         try {
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("P_TITLE", reportTitle);
             parameters.put("P_SUBTITLE", reportSubtitle);
             parameters.put("P_EXPLANATION_TEXT", explanationText);
-            parameters.put("P_UTFPR_LOGO_URL", utfprLogoUrl);
-            parameters.put("P_PROCESS_LOGO_URL", processLogoUrl);
-            parameters.put("P_DEFAULT_CAMPUS_IMG_URL", defaultCampusImgUrl);
+
+            // Usa os caminhos do conjunto de imagens selecionado
+            parameters.put("P_UTFPR_LOGO_URL", selectedImageSet.utfprLogoPath());
+            parameters.put("P_PROCESS_LOGO_URL", selectedImageSet.processLogoPath());
+
+            parameters.put("P_DEFAULT_CAMPUS_IMG_URL", "images/campi/ct.png");
             parameters.put("P_SHOW_FOOTER_DATE", showFooterDate);
             parameters.put("P_FOOTER_TEXT", footerText);
             parameters.put("P_QR_CODE_URL", qrCodeUrl);
-
 
             ReportType reportType = ReportType.valueOf(reportTypeName);
             byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters);

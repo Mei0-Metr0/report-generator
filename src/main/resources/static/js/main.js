@@ -1,20 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Elementos do DOM
     const reportTypeSelect = document.getElementById('reportType');
-    const selectionProcessSelect = document.getElementById('selectionProcess');
     const instructionsText = document.getElementById('instructions-text');
     const requiredFieldsList = document.getElementById('required-fields-list');
-    const processLogoUrlInput = document.getElementById('processLogoUrl');
     const validateCsvBtn = document.getElementById('validateCsvBtn');
     const csvFileInput = document.getElementById('csvFile');
     const messageContainer = document.getElementById('message-container');
-
-    const processLogoMap = {
-        "+Enem": "https://raw.githubusercontent.com/alerario/report/master/maisenem.png",
-        "Vestibular": "https://raw.githubusercontent.com/alerario/report/master/vestibular.png",
-        "PSS": "https://raw.githubusercontent.com/alerario/report/master/pss.png",
-        "SiSU": "https://raw.githubusercontent.com/alerario/report/master/sisu.png"
-    };
 
     // Função para atualizar a UI baseada no Tipo de Relatório
     function updateReportSpecificUI() {
@@ -34,12 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Função para atualizar a logo baseada no Processo Seletivo
-    function updateProcessLogo() {
-        const selectedProcess = selectionProcessSelect.value;
-        processLogoUrlInput.value = processLogoMap[selectedProcess] || '';
-    }
-
     // Função para validar o cabeçalho do CSV
     function validateCsvHeader() {
         const file = csvFileInput.files[0];
@@ -53,11 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const reader = new FileReader();
         reader.onload = function(e) {
-            // Lê apenas a primeira linha do arquivo
             const firstLine = e.target.result.split('\n')[0].trim();
-            // Assume delimitador ; e codificação ISO-8859-1 (a leitura de texto aqui pode não ser perfeita para todos os charsets, mas para validação de header deve funcionar)
             const actualHeaders = new Set(firstLine.split(';'));
-
             const missingHeaders = [];
             requiredHeaders.forEach(required => {
                 if (!actualHeaders.has(required)) {
@@ -71,12 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 displayMessage(`Erro: Campos obrigatórios não encontrados no CSV: ${missingHeaders.join(', ')}`, 'danger');
             }
         };
-
         reader.onerror = function() {
             displayMessage('Erro ao ler o arquivo.', 'danger');
         };
-
-        // Lê o arquivo como texto (para inspecionar o cabeçalho)
         reader.readAsText(file, 'ISO-8859-1');
     }
 
@@ -87,10 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event Listeners
     reportTypeSelect.addEventListener('change', updateReportSpecificUI);
-    selectionProcessSelect.addEventListener('change', updateProcessLogo);
     validateCsvBtn.addEventListener('click', validateCsvHeader);
 
     // Inicializa a UI na carga da página
     updateReportSpecificUI();
-    updateProcessLogo();
 });
