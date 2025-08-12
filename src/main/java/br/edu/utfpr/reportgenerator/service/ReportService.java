@@ -23,7 +23,8 @@ public class ReportService {
         JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
 
         // 3. Cria a fonte de dados a partir do CSV
-        JRCsvDataSource dataSource = new JRCsvDataSource(csvInputStream, "ISO-8859-1");
+        //JRCsvDataSource dataSource = new JRCsvDataSource(csvInputStream, "ISO-8859-1");
+        JRCsvDataSource dataSource = new JRCsvDataSource(csvInputStream, "UTF-8");
         dataSource.setFieldDelimiter(';');
         dataSource.setUseFirstRowAsHeader(true);
 

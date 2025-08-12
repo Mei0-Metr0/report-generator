@@ -1,4 +1,3 @@
-<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
 <jasperReport name="InscricoesHomologadasFULL" language="java" columnCount="1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd80ba8e-8774-4f11-addd-048a58377161">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Homologados.jrdax"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -15,6 +14,17 @@
 			<conditionExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0]]></conditionExpression>
 		</conditionalStyle>
 	</style>
+
+	<parameter name="P_TITLE" class="java.lang.String"/>
+	<parameter name="P_SUBTITLE" class="java.lang.String"/>
+	<parameter name="P_EXPLANATION_TEXT" class="java.lang.String"/>
+	<parameter name="P_UTFPR_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_PROCESS_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_SHOW_FOOTER_DATE" class="java.lang.Boolean"/>
+	<parameter name="P_FOOTER_TEXT" class="java.lang.String"/>
+	<parameter name="P_QR_CODE_URL" class="java.lang.String"/>
+	<parameter name="P_DEFAULT_CAMPUS_IMG_URL" class="java.lang.String"/>
+
 	<query language="csv"><![CDATA[]]></query>
 	<field name="Protocolo" class="java.lang.Integer"/>
 	<field name="Candidato" class="java.lang.String"/>
@@ -24,18 +34,18 @@
 	<field name="Campus2" class="java.lang.String"/>
 	<field name="Curso2" class="java.lang.String"/>
 	<sortField name="Candidato"/>
+
 	<background splitType="Stretch"/>
 	<title height="10" splitType="Stretch"/>
 	<pageHeader height="154" splitType="Stretch">
-		<element kind="image" uuid="90338acd-85f8-4873-98ba-2308873a486e" x="451" y="0" width="105" height="69" linkType="None" linkTarget="Self">
-			<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/maisenem.png"]]></expression>
+		<element kind="image" uuid="90338acd-85f8-4873-98ba-2308873a486e" x="450" y="0" width="105" height="69" linkType="None" linkTarget="Self">
+			<expression><![CDATA[$P{P_PROCESS_LOGO_URL}]]></expression>
 		</element>
-		<element kind="staticText" uuid="80051d2f-c71f-416a-9a09-9bd78a1a68f7" key="" mode="Opaque" x="106" y="0" width="344" height="40" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[EDITAL 12/2025 - PROGRAD
-PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
+		<element kind="textField" uuid="80051d2f-c71f-416a-9a09-9bd78a1a68f7" key="" mode="Opaque" x="90" y="0" width="360" height="40" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_SUBTITLE}]]></expression>
 		</element>
-		<element kind="staticText" uuid="f3bdfc7b-8ed3-452e-a19d-792aec282dea" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="556" height="41" backcolor="#F5F2F2" markup="none" fontSize="9.0" italic="true" vTextAlign="Middle">
-			<text><![CDATA[alterar texto]]></text>
+		<element kind="textField" uuid="f3bdfc7b-8ed3-452e-a19d-792aec282dea" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="556" height="41" backcolor="#F5F2F2" markup="html" fontSize="9.0" italic="true" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_EXPLANATION_TEXT}]]></expression>
 			<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 				<pen lineWidth="0.25" lineStyle="Solid"/>
 				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -44,8 +54,8 @@ PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
 				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 			</box>
 		</element>
-		<element kind="staticText" uuid="0ca263e8-1db0-4f99-a09e-c25c424aa86f" key="" mode="Opaque" x="106" y="40" width="344" height="30" backcolor="#FFCB00" markup="none" fontSize="11.0" bold="true" italic="false" underline="false" hTextAlign="Center" vTextAlign="Middle">
-			<text><![CDATA[RELAÇÃO DE INSCRIÇÕES HOMOLOGADAS]]></text>
+		<element kind="textField" uuid="0ca263e8-1db0-4f99-a09e-c25c424aa86f" key="" mode="Opaque" x="90" y="40" width="360" height="30" backcolor="#FFCB00" markup="none" fontSize="11.0" bold="true" underline="false" italic="false" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_TITLE}]]></expression>
 		</element>
 		<element kind="staticText" uuid="e2579ea7-0c18-4f41-887c-5fadc660d65f" mode="Opaque" x="467" y="111" width="43" height="20" backcolor="#FCF7CA" fontSize="5.0" italic="true">
 			<text><![CDATA[(T) - Tarde
@@ -79,8 +89,8 @@ PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
 		<element kind="staticText" uuid="5647efe2-6ce7-4058-8c36-79b8203094ff" mode="Opaque" x="424" y="111" width="43" height="20" backcolor="#FCF7CA" fontSize="7.0" bold="true" italic="true" vTextAlign="Middle">
 			<text><![CDATA[Legenda]]></text>
 		</element>
-		<element kind="image" uuid="e4e20db4-aeb7-4669-8aa6-7d6b8f2bcd05" x="0" y="12" width="100" height="40">
-			<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/UTFPR_logo.png"]]></expression>
+		<element kind="image" uuid="cb608ece-0424-42d9-91b4-2c1cd47e20ef" x="3" y="14" width="85" height="55">
+			<expression><![CDATA[$P{P_UTFPR_LOGO_URL}]]></expression>
 		</element>
 	</pageHeader>
 	<columnHeader height="22" splitType="Stretch">
@@ -202,7 +212,7 @@ PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
 				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 			</element>
 			<element kind="textField" uuid="f7e4e0d8-0db5-40ba-9520-65f7cebca759" x="429" y="4" width="15" height="10" fontSize="5.0">
-				<expression><![CDATA[IF($F{Campus2}.isBlank()," ","-")]]></expression>
+				<expression><![CDATA[$F{Campus2}.isBlank() ? " " : "-"]]></expression>
 				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
@@ -211,39 +221,39 @@ PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
 	</detail>
 	<columnFooter splitType="Stretch"/>
 	<pageFooter height="107" splitType="Stretch">
-		<element kind="textField" uuid="793e4e0a-1286-4980-9667-1ecd5c8ed52c" mode="Opaque" x="182" y="60" width="319" height="14" forecolor="#FFFFFF" backcolor="#0169CD" linkType="Reference" linkTarget="Self">
-			<expression><![CDATA["https://www.utfpr.edu.br/cursos/estudenautfpr/maisenem/cronograma"]]></expression>
-			<hyperlinkReferenceExpression><![CDATA["https://www.utfpr.edu.br/cursos/estudenautfpr/maisenem/cronograma"]]></hyperlinkReferenceExpression>
+		<element kind="textField" uuid="793e4e0a-1286-4980-9667-1ecd5c8ed52c" mode="Opaque" x="200" y="60" width="319" height="14" forecolor="#FFFFFF" backcolor="#0169CD" linkType="Reference" linkTarget="Self">
+			<printWhenExpression><![CDATA[$P{P_QR_CODE_URL} != null && !$P{P_QR_CODE_URL}.isEmpty()]]></printWhenExpression>
+			<expression><![CDATA[$P{P_QR_CODE_URL}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
 			<hyperlinkTooltipExpression><![CDATA["Clique aqui para ir ao cronograma"]]></hyperlinkTooltipExpression>
 		</element>
-		<element kind="rectangle" uuid="12db858f-9c0c-45d4-ab2b-fc4a19819274" mode="Opaque" x="182" y="41" width="169" height="15" backcolor="#BABEF7">
-			<pen lineWidth="0.0"/>
+		<element kind="textField" uuid="96955233-a7ec-4125-9007-f70b38761bf7" x="430" y="16" width="80" height="20" fontSize="10.0" bold="false" hTextAlign="Right">
+			<expression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></expression>
 		</element>
-		<element kind="textField" uuid="b8ec3f66-3929-4610-8b27-691e66da37eb" mode="Opaque" x="182" y="42" width="170" height="14" forecolor="#FFFFFF" backcolor="#0169CD" linkType="Reference" linkTarget="Self">
-			<expression><![CDATA["https://portaldocandidato.funtef.org/"]]></expression>
-			<hyperlinkReferenceExpression><![CDATA["https://portaldocandidato.funtef.org/"]]></hyperlinkReferenceExpression>
-			<hyperlinkTooltipExpression><![CDATA["Clique aqui para ir ao portal do candidato"]]></hyperlinkTooltipExpression>
+		<element kind="textField" uuid="59c54b8e-db73-4164-8133-e26aea0e626e" x="510" y="16" width="40" height="20" fontSize="10.0" evaluationTime="Report" bold="false">
+			<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
 		</element>
 		<element kind="line" uuid="5b1a32a9-04cf-4367-9771-34538537ade2" x="0" y="10" width="555" height="1" forecolor="#EBD757">
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>
 		</element>
-		<element kind="component" uuid="36c469b4-0af4-454b-90cf-c42198a99240" key="" x="100" y="10" width="82" height="71">
+		<element kind="component" uuid="36c469b4-0af4-454b-90cf-c42198a99240" key="" x="106" y="11" width="93" height="67">
+			<printWhenExpression><![CDATA[$P{P_QR_CODE_URL} != null && !$P{P_QR_CODE_URL}.isEmpty()]]></printWhenExpression>
 			<component kind="barcode4j:QRCode">
-				<codeExpression><![CDATA["https://www.utfpr.edu.br/cursos/estudenautfpr/maisenem/cronograma"]]></codeExpression>
+				<codeExpression><![CDATA[$P{P_QR_CODE_URL}]]></codeExpression>
 			</component>
 			<property name="com.jaspersoft.studio.element.name" value="Cronograma"/>
 		</element>
-		<element kind="textField" uuid="d8638dff-c0e6-4238-b2ac-e83284d2f5af" x="200" y="14" width="190" height="20" fontSize="10.0" bold="false">
+		<element kind="textField" uuid="d8638dff-c0e6-4238-b2ac-e83284d2f5af" x="220" y="16" width="190" height="20" fontSize="10.0" bold="false">
+			<printWhenExpression><![CDATA[$P{P_SHOW_FOOTER_DATE}]]></printWhenExpression>
 			<expression><![CDATA["Curitiba, " + new SimpleDateFormat("dd").format(new java.util.Date()) + " de " +  new SimpleDateFormat("MMMM").format(new java.util.Date()) + " de " +  new SimpleDateFormat("YYYY").format(new java.util.Date())+"."]]></expression>
 		</element>
-		<element kind="image" uuid="c018548a-3198-4d98-b34e-acc977200f11" x="0" y="11" width="106" height="68">
-			<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/ct.png"]]></expression>
+		<element kind="image" uuid="c018548a-3198-4d98-b34e-acc977200f11" x="0" y="10" width="106" height="69">
+			<expression><![CDATA[$P{P_DEFAULT_CAMPUS_IMG_URL}]]></expression>
 		</element>
-		<element kind="textField" uuid="59c54b8e-db73-4164-8133-e26aea0e626e" x="514" y="13" width="40" height="20" fontSize="10.0" evaluationTime="Report" bold="false">
-			<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
-		</element>
-		<element kind="textField" uuid="96955233-a7ec-4125-9007-f70b38761bf7" x="429" y="13" width="80" height="20" fontSize="10.0" bold="false" hTextAlign="Right">
-			<expression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></expression>
+		<element kind="textField" uuid="b8ec3f66-3929-4610-8b27-691e66da37eb" mode="Opaque" x="200" y="42" width="170" height="14" forecolor="#FFFFFF" backcolor="#0169CD" linkType="Reference" linkTarget="Self">
+			<expression><![CDATA[$P{P_FOOTER_TEXT}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
+			<hyperlinkTooltipExpression><![CDATA["Clique aqui para ir ao portal do candidato"]]></hyperlinkTooltipExpression>
 		</element>
 	</pageFooter>
 	<summary height="42" splitType="Stretch"/>

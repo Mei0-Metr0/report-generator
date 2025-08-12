@@ -9,7 +9,18 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18.0"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12.0" bold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12.0"/>
-	<query language="xls"><![CDATA[]]></query>
+
+	<parameter name="P_TITLE" class="java.lang.String"/>
+	<parameter name="P_SUBTITLE" class="java.lang.String"/>
+	<parameter name="P_EXPLANATION_TEXT" class="java.lang.String"/>
+	<parameter name="P_UTFPR_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_PROCESS_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_SHOW_FOOTER_DATE" class="java.lang.Boolean"/>
+	<parameter name="P_FOOTER_TEXT" class="java.lang.String"/>
+	<parameter name="P_QR_CODE_URL" class="java.lang.String"/>
+	<parameter name="P_DEFAULT_CAMPUS_IMG_URL" class="java.lang.String"/>
+
+	<query language="csv"><![CDATA[]]></query>
 	<field name="Campus" class="java.lang.String"/>
 	<field name="Curso" class="java.lang.String"/>
 	<field name="Turno" class="java.lang.String"/>
@@ -33,7 +44,7 @@
 	<sortField name="Curso"/>
 	<sortField name="Turno"/>
 	<sortField name="Nome"/>
-	<group name="Group1" reprintHeaderOnEachPage="true" resetPageNumber="true" startNewPage="true">
+	<group name="Group1" reprintHeaderOnEachPage="true" startNewPage="true" resetPageNumber="true">
 		<expression><![CDATA[$F{Campus}]]></expression>
 		<groupHeader>
 			<band height="154">
@@ -42,19 +53,18 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</element>
-				<element kind="image" uuid="993ec953-e765-411d-bded-71828e04a804" x="461" y="0" width="105" height="71" linkType="None" linkTarget="Self">
-					<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/maisenem.png"]]></expression>
+				<element kind="image" uuid="993ec953-e765-411d-bded-71828e04a804" x="460" y="0" width="105" height="71" linkType="None" linkTarget="Self">
+					<expression><![CDATA[$P{P_PROCESS_LOGO_URL}]]></expression>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</element>
-				<element kind="staticText" uuid="09cd8005-62b5-4c8e-9052-577ed5462da0" key="" mode="Opaque" x="100" y="-1" width="361" height="42" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
-					<text><![CDATA[EDITAL 12/2025 - PROGRAD
-PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
+				<element kind="textField" uuid="09cd8005-62b5-4c8e-9052-577ed5462da0" key="" mode="Opaque" x="100" y="-1" width="361" height="42" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+					<expression><![CDATA[$P{P_TITLE}]]></expression>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</element>
 				<element kind="textField" uuid="a42efaf0-a31a-4111-9746-dbce3979d44e" mode="Opaque" x="0" y="70" width="555" height="60" backcolor="#F5F2F2" markup="html" textAdjust="ScaleFont" linkType="Reference" linkTarget="Self" italic="true" hTextAlign="Justified" vTextAlign="Middle">
 					<paragraph firstLineIndent="5" leftIndent="3" rightIndent="3" spacingAfter="3"/>
-					<expression><![CDATA["Candidatos na situação <b>ETAPA 1 CONCLUÍDA</b>, devem nos dias dd e dd/mmmm, acessar novamente a Plataforma e realizar a Etapa 2 (Confirmação). Candidatos na situação <b>ENVIAR SUBSTITUIÇÃO DE DOCUMENTOS</b>, devem nos dias dd e dd/mmm, acessar novamente a Plataforma e, de acordo com a orientação, substituir/completar a documentação exigida. Candidatos na situação <b>DESISTIU DA VAGA</b>, são candidatos que optaram por desistir de participar do Requerimento de Matrícula e por isso, são considerados desistentes. Os candidatos na situação <b>NÃO ENVIOU DOCUMENTAÇÃO</b>, são candidatos que não acessaram a Plataforma, no prazo indicado e por este motivo, perderam o direito à vaga e são considerados desistentes."]]></expression>
-					<hyperlinkReferenceExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula"]]></hyperlinkReferenceExpression>
+					<expression><![CDATA[$P{P_EXPLANATION_TEXT}]]></expression>
+					<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.spacingAfter" value="px"/>
@@ -63,10 +73,10 @@ PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
 					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
 				</element>
 				<element kind="textField" uuid="2f4031d9-5b42-437e-9f4e-512e10e3f13e" mode="Opaque" x="100" y="40" width="361" height="30" backcolor="#FFCB00" markup="html" bold="true" hTextAlign="Center" vTextAlign="Middle">
-					<expression><![CDATA["RESULTADO PRELIMINAR DA ETAPA 1 - 1<sup>a</sup> chamada"]]></expression>
+					<expression><![CDATA[$P{P_SUBTITLE}]]></expression>
 				</element>
-				<element kind="image" uuid="c0e6508e-df58-48ab-9193-84446cb5177d" x="0" y="12" width="100" height="40">
-					<expression><![CDATA["https://raw.githubusercontent.com/alerario/report/master/UTFPR_logo.png"]]></expression>
+				<element kind="image" uuid="b10a9451-d173-4525-873f-cf84ace193a6" x="3" y="14" width="96" height="46">
+					<expression><![CDATA[$P{P_UTFPR_LOGO_URL}]]></expression>
 				</element>
 			</band>
 		</groupHeader>
@@ -259,7 +269,7 @@ PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
 				<property name="com.jaspersoft.studio.unit.width" value="px"/>
 			</element>
 			<element kind="textField" uuid="86e7bba4-cd45-4734-b46f-87175a59affa" x="450" y="1" width="105" height="14" fontSize="7.0" textAdjust="ScaleFont" hTextAlign="Center" vTextAlign="Middle">
-				<expression><![CDATA[IF($F{Situação do requerimento de matrícula}!="",$F{Situação do requerimento de matrícula},"Não enviou documentação")]]></expression>
+				<expression><![CDATA[$F{Situação do requerimento de matrícula} != "" ? $F{Situação do requerimento de matrícula} : "Não enviou documentação"]]></expression>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
 			<element kind="textField" uuid="7caec822-48da-4468-b865-2caf2c7b5730" x="258" y="1" width="60" height="14" fontSize="7.0" textAdjust="ScaleFont" hTextAlign="Center" vTextAlign="Middle">
@@ -373,17 +383,17 @@ PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
 	</detail>
 	<columnFooter height="37" splitType="Stretch"/>
 	<pageFooter height="80" splitType="Stretch">
-		<element kind="textField" uuid="8c25c2e4-4b17-495c-a491-e009e19777a8" x="162" y="10" width="200" height="60" forecolor="#2B53C2" textAdjust="ScaleFont" linkType="Reference" linkTarget="Self" hTextAlign="Justified" vTextAlign="Middle">
-			<expression><![CDATA["Efetue agora a substituição da documentação necessária, se for o caso, em https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula"]]></expression>
-			<hyperlinkReferenceExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=104"]]></hyperlinkReferenceExpression>
+		<element kind="textField" uuid="8c25c2e4-4b17-495c-a491-e009e19777a8" x="184" y="10" width="200" height="60" forecolor="#2B53C2" textAdjust="ScaleFont" linkType="Reference" linkTarget="Self" hTextAlign="Justified" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_FOOTER_TEXT}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
 		</element>
-		<element kind="textField" uuid="deb23d85-47bb-4de6-978e-113ff117188c" x="464" y="50" width="90" height="20" fontSize="10.0" bold="false" hTextAlign="Right" style="Column header">
+		<element kind="textField" uuid="deb23d85-47bb-4de6-978e-113ff117188c" x="463" y="57" width="90" height="20" fontSize="10.0" bold="false" hTextAlign="Right" style="Column header">
 			<expression><![CDATA["Página "+$V{PAGE_NUMBER}
 ]]></expression>
 		</element>
-		<element kind="component" uuid="c80f019c-d985-4723-8473-f0369bc8a28d" x="81" y="0" width="81" height="79">
+		<element kind="component" uuid="c80f019c-d985-4723-8473-f0369bc8a28d" x="103" y="0" width="81" height="79">
 			<component kind="barcode4j:QRCode">
-				<codeExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=104"]]></codeExpression>
+				<codeExpression><![CDATA[$P{P_QR_CODE_URL}]]></codeExpression>
 			</component>
 			<property name="com.jaspersoft.studio.unit.y" value="px"/>
 			<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -392,25 +402,25 @@ PROCESSO SELETIVO MAIS ENEM UTFPR - 2025/2]]></text>
 		<element kind="line" uuid="2a2e3fa3-fdc7-45b1-ad76-a6c4c5ff5c4e" positionType="FixRelativeToBottom" mode="Opaque" x="-4" y="0" width="553" height="1" backcolor="#030303">
 			<pen lineWidth="0.5" lineStyle="Double" lineColor="#030303"/>
 		</element>
-		<element kind="textField" uuid="97641b47-ef1b-4de7-96aa-ffada9d58daa" x="393" y="10" width="161" height="21" textAdjust="ScaleFont">
+		<element kind="image" uuid="6d4ca421-5487-4f99-ab33-5f5c97805eeb" x="0" y="1" width="100" height="79" printInFirstWholeBand="true">
+			<expression><![CDATA[( $F{Campus}.equalsIgnoreCase("Curitiba") ? "images/campi/ct.png" :
+( $F{Campus}.equalsIgnoreCase("Apucarana") ? "images/campi/ap.png" :
+( $F{Campus}.equalsIgnoreCase("Campo Mourão") ? "images/campi/cm.png" :
+( $F{Campus}.equalsIgnoreCase("Dois Vizinhos") ? "images/campi/dv.png" :
+( $F{Campus}.equalsIgnoreCase("Londrina") ? "images/campi/ld.png" :
+( $F{Campus}.equalsIgnoreCase("Medianeira") ? "images/campi/md.png" :
+( $F{Campus}.equalsIgnoreCase("Pato Branco") ? "images/campi/pb.png" :
+( $F{Campus}.equalsIgnoreCase("Ponta Grossa") ? "images/campi/pg.png" :
+( $F{Campus}.equalsIgnoreCase("Santa Helena") ? "images/campi/sh.png" :
+( $F{Campus}.equalsIgnoreCase("Toledo") ? "images/campi/td.png" :
+( $F{Campus}.equalsIgnoreCase("Guarapuava") ? "images/campi/gp.png" :
+( $F{Campus}.equalsIgnoreCase("Francisco Beltrão") ? "images/campi/fb.png" :
+( $F{Campus}.equalsIgnoreCase("Cornélio Procópio") ? "images/campi/cp.png" : $P{P_DEFAULT_CAMPUS_IMG_URL} )))))))))))))]]></expression>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
+		<element kind="textField" uuid="97641b47-ef1b-4de7-96aa-ffada9d58daa" x="394" y="10" width="161" height="21" textAdjust="ScaleFont">
 			<expression><![CDATA["Curitiba, " + new SimpleDateFormat("dd").format(new java.util.Date()) + " de " +  new SimpleDateFormat("MMMM").format(new java.util.Date()) + " de " +  new SimpleDateFormat("YYYY").format(new java.util.Date())+"."]]></expression>
 			<property name="com.jaspersoft.studio.unit.x" value="px"/>
-		</element>
-		<element kind="image" uuid="6d4ca421-5487-4f99-ab33-5f5c97805eeb" x="0" y="0" width="104" height="79" printInFirstWholeBand="true">
-			<expression><![CDATA[( $F{Campus}.equalsIgnoreCase("Curitiba") ? "https://raw.githubusercontent.com/alerario/report/master/png/ct.png" : 
-( $F{Campus}.equalsIgnoreCase("Apucarana") ? "https://raw.githubusercontent.com/alerario/report/master/png/ap.png" : 
-( $F{Campus}.equalsIgnoreCase("Campo Mourão") ? "https://raw.githubusercontent.com/alerario/report/master/png/cm.png" : 
-( $F{Campus}.equalsIgnoreCase("Dois Vizinhos") ? "https://raw.githubusercontent.com/alerario/report/master/png/dv.png" : 
-( $F{Campus}.equalsIgnoreCase("Londrina") ? "https://raw.githubusercontent.com/alerario/report/master/png/ld.png" : 
-( $F{Campus}.equalsIgnoreCase("Medianeira") ? "https://raw.githubusercontent.com/alerario/report/master/png/md.png" : 
-( $F{Campus}.equalsIgnoreCase("Pato Branco") ? "https://raw.githubusercontent.com/alerario/report/master/png/pb.png" : 
-( $F{Campus}.equalsIgnoreCase("Ponta Grossa") ? "https://raw.githubusercontent.com/alerario/report/master/png/pg.png" : 
-( $F{Campus}.equalsIgnoreCase("Santa Helena") ? "https://raw.githubusercontent.com/alerario/report/master/png/sh.png" : 
-( $F{Campus}.equalsIgnoreCase("Toledo") ? "https://raw.githubusercontent.com/alerario/report/master/png/td.png" : 
-( $F{Campus}.equalsIgnoreCase("Guarapuava") ? "https://raw.githubusercontent.com/alerario/report/master/png/gp.png" : 
-( $F{Campus}.equalsIgnoreCase("Francisco Beltrão") ? "https://raw.githubusercontent.com/alerario/report/master/png/fb.png" : 
-($F{Campus}.equalsIgnoreCase("Cornélio Procópio") ? "https://raw.githubusercontent.com/alerario/report/master/png/cp.png" : "https://raw.githubusercontent.com/alerario/report/master/png/ct.png")))))))))))))]]></expression>
-			<property name="com.jaspersoft.studio.unit.y" value="px"/>
 		</element>
 	</pageFooter>
 	<summary splitType="Stretch"/>

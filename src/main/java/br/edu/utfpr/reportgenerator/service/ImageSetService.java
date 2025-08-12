@@ -33,6 +33,18 @@ public class ImageSetService {
                     "Tema PSS",
                     "images/logos/pss.png",
                     "images/logos/utfpr.png"
+            ),
+            new ImageSet(
+                    "reopcao_transferencia",
+                    "Tema Reopção e Transferência",
+                    "images/logos/reopcao_transferencia.png",
+                    "images/logos/utfpr.png"
+            ),
+            new ImageSet(
+                    "aproveitamento",
+                    "Tema Aproveitamento",
+                    "images/logos/aproveitamento.png",
+                    "images/logos/utfpr.png"
             )
     );
 

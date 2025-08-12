@@ -31,7 +31,7 @@ public class ReportController {
 
     @GetMapping("/")
     public String homePage(Model model) {
-        model.addAttribute("selectionProcesses", new String[]{"+Enem", "Vestibular", "PSS", "SiSU"});
+        model.addAttribute("selectionProcesses", new String[]{"+Enem", "SiSU", "Vestibular", "PSS", "Reopção e Transferência", "Aproveitamento"});
         model.addAttribute("reportTypes", ReportType.values());
         // Adiciona a lista de temas de imagem ao modelo para popular a ComboBox
         model.addAttribute("imageSets", imageSetService.getAvailableImageSets());
