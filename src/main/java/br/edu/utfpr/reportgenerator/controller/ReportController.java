@@ -49,6 +49,7 @@ public class ReportController {
             @RequestParam(value = "showFooterDate", required = false) boolean showFooterDate,
             @RequestParam("footerText") String footerText,
             @RequestParam("qrCodeUrl") String qrCodeUrl,
+            @RequestParam("csvEncoding") String csvEncoding, // NOVO PARÂMETRO
             RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
@@ -76,7 +77,8 @@ public class ReportController {
             parameters.put("P_QR_CODE_URL", qrCodeUrl);
 
             ReportType reportType = ReportType.valueOf(reportTypeName);
-            byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters);
+            // PASSA O ENCODING PARA O SERVIÇO
+            byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters, csvEncoding);
 
             String filename = reportType.name().toLowerCase() + "_report.pdf";
 

@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const validateBtn = document.getElementById('validateCsvBtn');
     const csvInput = document.getElementById('csvFile');
     const validationContainer = document.getElementById('validation-message-container');
+    const encodingSelect = document.getElementById('csvEncoding');
 
     /**
      * Exibe uma mensagem de validação na tela.
@@ -102,8 +103,11 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.onload = function(e) {
                 try {
                     const content = e.target.result;
+                    // Pega a primeira linha e remove espaços em branco e o BOM (Byte Order Mark), se houver.
                     const firstLine = content.split(/[\r\n]+/)[0].trim().replace(/^\uFEFF/, '');
+                    // Remove aspas que podem envolver os cabeçalhos
                     const fileHeaders = firstLine.split(';').map(h => h.trim().replace(/^"|"$/g, ''));
+
                     const fileHeadersSet = new Set(fileHeaders);
                     const missingHeaders = requiredHeaders.filter(header => !fileHeadersSet.has(header));
 
@@ -126,8 +130,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 displayValidationMessage('Não foi possível ler o arquivo. Verifique as permissões ou se o arquivo não está corrompido.', false);
             };
 
-            // Usa ISO-8859-1 (Latin-1) para manter consistência com as instruções de exportação do sistema.
-            reader.readAsText(file, 'UTF-8');
+            // Usa o encoding selecionado na interface
+            const selectedEncoding = encodingSelect.value;
+            reader.readAsText(file, selectedEncoding);
         });
     }
 });
