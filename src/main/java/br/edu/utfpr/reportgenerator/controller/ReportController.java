@@ -1,8 +1,6 @@
 package br.edu.utfpr.reportgenerator.controller;
 
-import br.edu.utfpr.reportgenerator.model.ImageSet;
 import br.edu.utfpr.reportgenerator.model.ReportType;
-import br.edu.utfpr.reportgenerator.service.ImageSetService;
 import br.edu.utfpr.reportgenerator.service.ReportService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,18 +20,15 @@ import java.util.Map;
 public class ReportController {
 
     private final ReportService reportService;
-    private final ImageSetService imageSetService;
 
-    public ReportController(ReportService reportService, ImageSetService imageSetService) {
+    public ReportController(ReportService reportService) {
         this.reportService = reportService;
-        this.imageSetService = imageSetService;
     }
 
     @GetMapping("/")
     public String homePage(Model model) {
-        model.addAttribute("selectionProcesses", new String[]{"+Enem", "SiSU", "Vestibular", "PSS", "Reopção e Transferência", "Aproveitamento"});
+        model.addAttribute("selectionProcesses", new String[]{"+Enem", "Vestibular", "PSS", "SiSU"});
         model.addAttribute("reportTypes", ReportType.values());
-        model.addAttribute("imageSets", imageSetService.getAvailableImageSets());
         return "index";
     }
 
@@ -41,15 +36,12 @@ public class ReportController {
     public ResponseEntity<?> generateReport(
             @RequestParam("reportType") String reportTypeName,
             @RequestParam("csvFile") MultipartFile file,
+            @RequestParam("imageUrl") String imageUrl,
             @RequestParam("reportTitle") String reportTitle,
             @RequestParam("reportSubtitle") String reportSubtitle,
-            @RequestParam("explanationText") String explanationText,
-            @RequestParam("imageSetId") String imageSetId,
-            @RequestParam(value = "showFooterDate", required = false) boolean showFooterDate,
-            @RequestParam("footerText") String footerText,
-            @RequestParam("qrCodeUrl") String qrCodeUrl,
-            @RequestParam("csvEncoding") String csvEncoding,
-            @RequestParam("csvSeparator") String csvSeparator,
+            @RequestParam("matriculaUrl") String matriculaUrl,
+            @RequestParam("instructionText") String instructionText,
+            @RequestParam("footerUploadText") String footerUploadText,
             RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
@@ -57,29 +49,17 @@ public class ReportController {
             return ResponseEntity.status(302).header(HttpHeaders.LOCATION, "/").build();
         }
 
-        ImageSet selectedImageSet = imageSetService.findById(imageSetId)
-                .orElseThrow(() -> new IllegalArgumentException("Conjunto de imagens inválido: " + imageSetId));
-
         try {
-            if (csvSeparator == null || csvSeparator.length() != 1) {
-                csvSeparator = ";";
-            }
-
-            char separatorChar = csvSeparator.charAt(0);
-
             Map<String, Object> parameters = new HashMap<>();
+            parameters.put("P_IMAGE_URL", imageUrl);
             parameters.put("P_TITLE", reportTitle);
             parameters.put("P_SUBTITLE", reportSubtitle);
-            parameters.put("P_EXPLANATION_TEXT", explanationText);
-            parameters.put("P_UTFPR_LOGO_URL", selectedImageSet.utfprLogoPath());
-            parameters.put("P_PROCESS_LOGO_URL", selectedImageSet.processLogoPath());
-            parameters.put("P_DEFAULT_CAMPUS_IMG_URL", "images/campi/ct.png");
-            parameters.put("P_SHOW_FOOTER_DATE", showFooterDate);
-            parameters.put("P_FOOTER_TEXT", footerText);
-            parameters.put("P_QR_CODE_URL", qrCodeUrl);
+            parameters.put("P_MATRICULA_URL", matriculaUrl);
+            parameters.put("P_INSTRUCTION_TEXT", instructionText);
+            parameters.put("P_FOOTER_UPLOAD_TEXT", footerUploadText);
 
             ReportType reportType = ReportType.valueOf(reportTypeName);
-            byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters, csvEncoding, separatorChar);
+            byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters);
 
             String filename = reportType.name().toLowerCase() + "_report.pdf";
 
