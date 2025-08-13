@@ -1,0 +1,179 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="MaisENEM_MaiorMenor" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a41a0610-2cdc-4c47-9530-b19174543f11">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MaioresMenoresNotasAtePrimeiraChamada.jrdax"/>
+
+	<parameter name="P_TITLE" class="java.lang.String"/>
+	<parameter name="P_SUBTITLE" class="java.lang.String"/>
+	<parameter name="P_EXPLANATION_TEXT" class="java.lang.String"/>
+	<parameter name="P_UTFPR_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_PROCESS_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_SHOW_FOOTER_DATE" class="java.lang.Boolean"/>
+	<parameter name="P_FOOTER_TEXT" class="java.lang.String"/>
+	<parameter name="P_QR_CODE_URL" class="java.lang.String"/>
+	<parameter name="P_DEFAULT_CAMPUS_IMG_URL" class="java.lang.String"/>
+
+	<query language="csv"><![CDATA[]]></query>
+	<field name="Campus" class="java.lang.String"/>
+	<field name="Grau" class="java.lang.String"/>
+	<field name="Curso" class="java.lang.String"/>
+	<field name="Turno" class="java.lang.String"/>
+	<field name="Cota" class="java.lang.String"/>
+	<field name="Maior Nota" class="java.lang.String"/>
+	<field name="Menor Nota" class="java.lang.String"/>
+	<sortField name="Campus"/>
+	<sortField name="Curso"/>
+	<sortField name="Turno"/>
+	<sortField name="Cota"/>
+	<group name="Campus" keepTogether="true" reprintHeaderOnEachPage="true">
+		<expression><![CDATA[$F{Campus}]]></expression>
+		<groupHeader>
+			<band height="24">
+				<element kind="textField" uuid="78fa11b4-6fd9-45d2-b390-2deb07f2873d" mode="Opaque" x="0" y="0" width="555" height="24" forecolor="#000000" backcolor="#F8FF2B" fontSize="16.0" bold="true" hTextAlign="Center">
+					<expression><![CDATA[$F{Campus}]]></expression>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</element>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Curso" keepTogether="true">
+		<expression><![CDATA[$F{Curso}]]></expression>
+		<groupHeader>
+			<band height="30">
+				<element kind="textField" uuid="7787ac5b-74d6-4890-b875-5bc3e0fea646" x="1" y="0" width="543" height="30" fontSize="16.0" textAdjust="ScaleFont" bold="true">
+					<expression><![CDATA[$F{Curso}]]></expression>
+				</element>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Turno" keepTogether="true">
+		<expression><![CDATA[$F{Turno}]]></expression>
+		<groupHeader>
+			<band height="35">
+				<element kind="textField" uuid="440351ab-b661-43a1-b84d-5144395e1069" mode="Opaque" x="0" y="0" width="300" height="20" backcolor="#F0F0F0" fontSize="14.0" italic="false" hTextAlign="Left">
+					<expression><![CDATA["       Turno: "+ $F{Turno} ]]></expression>
+				</element>
+				<element kind="staticText" uuid="efc6bb0e-bc00-4fd0-bab8-7b65b5ef92b2" x="202" y="21" width="100" height="13" bold="true">
+					<text><![CDATA[Maior Nota]]></text>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="99847ed9-fe35-4441-a9c9-8ca61b2874b0"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="39d46fb0-ab27-4b1c-af56-5d34b63436a0" x="50" y="21" width="100" height="13" bold="true">
+					<text><![CDATA[Cota]]></text>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd53dfbf-9632-4d03-ac28-c4d20f8f19e5"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="staticText" uuid="c79fc912-56d0-4486-9dbc-327d07efb425" x="400" y="21" width="100" height="13" bold="true">
+					<text><![CDATA[Menor Nota]]></text>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ec85323b-fcef-4f5e-a624-a050ad15b1e9"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</element>
+				<element kind="line" uuid="856d9e80-3c5b-4588-b5a9-9a10e75198ba" x="0" y="34" width="555" height="1" forecolor="#BDB9B9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</element>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupHeader>
+	</group>
+	<background splitType="Stretch"/>
+	<title splitType="Stretch"/>
+	<pageHeader height="110" splitType="Stretch">
+		<element kind="image" uuid="a198bad4-0e24-4bef-b90d-350466333936" x="461" y="0" width="105" height="71" linkType="None" linkTarget="Self">
+			<expression><![CDATA[$P{P_PROCESS_LOGO_URL}]]></expression>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
+		<element kind="textField" uuid="3d9b208d-c2ab-42f1-aa68-e34206e77123" key="" mode="Opaque" x="100" y="40" width="361" height="30" backcolor="#FFCB00" markup="none" fontSize="11.0" bold="true" italic="false" underline="false" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_SUBTITLE}]]></expression>
+		</element>
+		<element kind="textField" uuid="d4a39a78-02ab-4f28-ae32-3a75795238aa" key="" mode="Opaque" x="100" y="-1" width="361" height="42" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_TITLE}]]></expression>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="textField" uuid="4213f8a3-9268-45bd-aeb9-08a146228220" mode="Opaque" x="0" y="70" width="555" height="40" backcolor="#F5F2F2" markup="html" textAdjust="ScaleFont" linkType="Reference" linkTarget="Self" italic="true" hTextAlign="Justified" vTextAlign="Middle">
+			<paragraph firstLineIndent="5" leftIndent="3" rightIndent="3" spacingAfter="3"/>
+			<expression><![CDATA[$P{P_EXPLANATION_TEXT}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA["https://sistemas2.utfpr.edu.br/ords/f?p=req_matricula"]]></hyperlinkReferenceExpression>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.spacingAfter" value="px"/>
+			<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+			<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+			<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+		</element>
+		<element kind="image" uuid="8c0acb6a-c500-4b7d-9b30-179f1f0a4f19" x="3" y="14" width="96" height="46">
+			<expression><![CDATA[$P{P_UTFPR_LOGO_URL}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="3" splitType="Stretch"/>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<element kind="textField" uuid="b1ea6e3d-2e39-4e76-a5d0-96cc398aa460" x="50" y="0" width="100" height="15">
+				<expression><![CDATA[$F{Cota}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cd53dfbf-9632-4d03-ac28-c4d20f8f19e5"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="cb34b61d-96bd-47be-8843-a34b80240350" x="202" y="0" width="100" height="15">
+				<expression><![CDATA[$F{Maior Nota}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="99847ed9-fe35-4441-a9c9-8ca61b2874b0"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="0b3d36d6-1c0d-4aaf-8b59-66ab05b4fe6d" x="399" y="0" width="100" height="15">
+				<expression><![CDATA[$F{Menor Nota}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ec85323b-fcef-4f5e-a624-a050ad15b1e9"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="line" uuid="58a1aa7e-74da-4e4d-b576-2a72776ceb97" x="0" y="15" width="555" height="1" forecolor="#E6DFDF">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="8" splitType="Stretch"/>
+	<pageFooter height="99" splitType="Stretch">
+		<element kind="line" uuid="ca4ee1b5-cc5e-439e-8d59-00045dcc770b" x="0" y="2" width="555" height="1" forecolor="#BDB9B9">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+		</element>
+		<element kind="component" uuid="1df7057d-0050-4e9c-a630-618ecec58f5d" x="111" y="2" width="108" height="95">
+			<component kind="barcode4j:QRCode">
+				<codeExpression><![CDATA[$P{P_QR_CODE_URL}]]></codeExpression>
+			</component>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="textField" uuid="f8560659-4d9d-4419-8ec0-095843d05911" x="218" y="30" width="200" height="60" forecolor="#2B53C2" textAdjust="ScaleFont" linkType="Reference" linkTarget="Self" hTextAlign="Justified" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_FOOTER_TEXT}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
+		</element>
+		<element kind="textField" uuid="483176dd-a54d-450f-bc2b-158425f25cca" x="464" y="79" width="90" height="20" fontSize="10.0" bold="false" hTextAlign="Right">
+			<expression><![CDATA["Página "+$V{PAGE_NUMBER}
+]]></expression>
+		</element>
+		<element kind="textField" uuid="835fed17-0e8b-4c7b-8102-a585f66041ce" x="354" y="12" width="200" height="30" textAdjust="ScaleFont">
+			<printWhenExpression><![CDATA[$P{P_SHOW_FOOTER_DATE}]]></printWhenExpression>
+			<expression><![CDATA["Curitiba, " + new SimpleDateFormat("dd").format(new java.util.Date()) + " de " +  new SimpleDateFormat("MMMM").format(new java.util.Date()) + " de " +  new SimpleDateFormat("YYYY").format(new java.util.Date())+"."]]></expression>
+		</element>
+		<element kind="image" uuid="ee126792-54ef-4427-ac0f-b362d57cef4d" x="0" y="4" width="111" height="94" printInFirstWholeBand="true">
+			<expression><![CDATA[( $F{Campus}.equalsIgnoreCase("Curitiba") ? "images/campi/ct.png" :
+( $F{Campus}.equalsIgnoreCase("Apucarana") ? "images/campi/ap.png" :
+( $F{Campus}.equalsIgnoreCase("Campo Mourão") ? "images/campi/cm.png" :
+( $F{Campus}.equalsIgnoreCase("Dois Vizinhos") ? "images/campi/dv.png" :
+( $F{Campus}.equalsIgnoreCase("Londrina") ? "images/campi/ld.png" :
+( $F{Campus}.equalsIgnoreCase("Medianeira") ? "images/campi/md.png" :
+( $F{Campus}.equalsIgnoreCase("Pato Branco") ? "images/campi/pb.png" :
+( $F{Campus}.equalsIgnoreCase("Ponta Grossa") ? "images/campi/pg.png" :
+( $F{Campus}.equalsIgnoreCase("Santa Helena") ? "images/campi/sh.png" :
+( $F{Campus}.equalsIgnoreCase("Toledo") ? "images/campi/td.png" :
+( $F{Campus}.equalsIgnoreCase("Guarapuava") ? "images/campi/gp.png" :
+( $F{Campus}.equalsIgnoreCase("Francisco Beltrão") ? "images/campi/fb.png" :
+( $F{Campus}.equalsIgnoreCase("Cornélio Procópio") ? "images/campi/cp.png" : $P{P_DEFAULT_CAMPUS_IMG_URL} )))))))))))))]]></expression>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
+	</pageFooter>
+	<summary height="8" splitType="Stretch"/>
+</jasperReport>

@@ -10,12 +10,15 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18.0"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12.0" bold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12.0"/>
-	<parameter name="P_IMAGE_URL" class="java.lang.String"/>
 	<parameter name="P_TITLE" class="java.lang.String"/>
 	<parameter name="P_SUBTITLE" class="java.lang.String"/>
-	<parameter name="P_INSTRUCTION_TEXT" class="java.lang.String"/>
-	<parameter name="P_MATRICULA_URL" class="java.lang.String"/>
-	<parameter name="P_FOOTER_UPLOAD_TEXT" class="java.lang.String"/>
+	<parameter name="P_EXPLANATION_TEXT" class="java.lang.String"/>
+	<parameter name="P_UTFPR_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_PROCESS_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_DEFAULT_CAMPUS_IMG_URL" class="java.lang.String"/>
+	<parameter name="P_SHOW_FOOTER_DATE" class="java.lang.Boolean"/>
+	<parameter name="P_FOOTER_TEXT" class="java.lang.String"/>
+	<parameter name="P_QR_CODE_URL" class="java.lang.String"/>
 	<query language="csv"><![CDATA[]]></query>
 	<field name="Campus" class="java.lang.String"/>
 	<field name="Curso" class="java.lang.String"/>
@@ -43,30 +46,29 @@
 		<groupHeader>
 			<band height="144">
 				<element kind="image" uuid="6d4ca421-5487-4f99-ab33-5f5c97805eeb" x="458" y="-1" width="94" height="81" printInFirstWholeBand="true">
-					<expression><![CDATA[( $F{Campus}.equalsIgnoreCase("Curitiba") ? "https://raw.githubusercontent.com/alerario/report/master/png/ct.png" : 
-( $F{Campus}.equalsIgnoreCase("Apucarana") ? "https://raw.githubusercontent.com/alerario/report/master/png/ap.png" : 
-( $F{Campus}.equalsIgnoreCase("Campo Mourão") ? "https://raw.githubusercontent.com/alerario/report/master/png/cm.png" : 
-( $F{Campus}.equalsIgnoreCase("Dois Vizinhos") ? "https://raw.githubusercontent.com/alerario/report/master/png/dv.png" : 
-( $F{Campus}.equalsIgnoreCase("Londrina") ? "https://raw.githubusercontent.com/alerario/report/master/png/ld.png" : 
-( $F{Campus}.equalsIgnoreCase("Medianeira") ? "https://raw.githubusercontent.com/alerario/report/master/png/md.png" : 
-( $F{Campus}.equalsIgnoreCase("Pato Branco") ? "https://raw.githubusercontent.com/alerario/report/master/png/pb.png" : 
-( $F{Campus}.equalsIgnoreCase("Ponta Grossa") ? "https://raw.githubusercontent.com/alerario/report/master/png/pg.png" : 
-( $F{Campus}.equalsIgnoreCase("Santa Helena") ? "https://raw.githubusercontent.com/alerario/report/master/png/sh.png" : 
-( $F{Campus}.equalsIgnoreCase("Toledo") ? "https://raw.githubusercontent.com/alerario/report/master/png/td.png" : 
-( $F{Campus}.equalsIgnoreCase("Guarapuava") ? "https://raw.githubusercontent.com/alerario/report/master/png/gp.png" : 
-( $F{Campus}.equalsIgnoreCase("Francisco Beltrão") ? "https://raw.githubusercontent.com/alerario/report/master/png/fb.png" : 
-($F{Campus}.equalsIgnoreCase("Cornélio Procópio") ? "https://raw.githubusercontent.com/alerario/report/master/png/cp.png" : "https://raw.githubusercontent.com/alerario/report/master/png/ct.png")))))))))))))]]></expression>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<expression><![CDATA[( $F{Campus}.equalsIgnoreCase("Curitiba") ? "images/campi/ct.png" :
+( $F{Campus}.equalsIgnoreCase("Apucarana") ? "images/campi/ap.png" :
+( $F{Campus}.equalsIgnoreCase("Campo Mourão") ? "images/campi/cm.png" :
+( $F{Campus}.equalsIgnoreCase("Dois Vizinhos") ? "images/campi/dv.png" :
+( $F{Campus}.equalsIgnoreCase("Londrina") ? "images/campi/ld.png" :
+( $F{Campus}.equalsIgnoreCase("Medianeira") ? "images/campi/md.png" :
+( $F{Campus}.equalsIgnoreCase("Pato Branco") ? "images/campi/pb.png" :
+( $F{Campus}.equalsIgnoreCase("Ponta Grossa") ? "images/campi/pg.png" :
+( $F{Campus}.equalsIgnoreCase("Santa Helena") ? "images/campi/sh.png" :
+( $F{Campus}.equalsIgnoreCase("Toledo") ? "images/campi/td.png" :
+( $F{Campus}.equalsIgnoreCase("Guarapuava") ? "images/campi/gp.png" :
+( $F{Campus}.equalsIgnoreCase("Francisco Beltrão") ? "images/campi/fb.png" :
+( $F{Campus}.equalsIgnoreCase("Cornélio Procópio") ? "images/campi/cp.png" : $P{P_DEFAULT_CAMPUS_IMG_URL} )))))))))))))]]></expression>
 				</element>
 				<element kind="textField" uuid="58dcc1c6-1d3b-42b1-ab28-0ec976da8319" mode="Opaque" x="0" y="120" width="553" height="24" forecolor="#000000" backcolor="#F8FF2B" bold="true" hTextAlign="Center" style="SubTitle">
 					<expression><![CDATA[$F{Campus}]]></expression>
 				</element>
 				<element kind="image" uuid="993ec953-e765-411d-bded-71828e04a804" x="0" y="-1" width="105" height="71" linkType="None" linkTarget="Self">
-					<expression><![CDATA[$P{P_IMAGE_URL}]]></expression>
+					<expression><![CDATA[$P{P_PROCESS_LOGO_URL}]]></expression>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</element>
-				<element kind="textField" uuid="0beb64ba-6da6-45fe-b357-d14d657fbdbf" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="553" height="50" backcolor="#F5F2F2" markup="none" fontSize="9.0" italic="true" vTextAlign="Middle">
-					<expression><![CDATA[$P{P_INSTRUCTION_TEXT}]]></expression>
+				<element kind="textField" uuid="0beb64ba-6da6-45fe-b357-d14d657fbdbf" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="553" height="50" backcolor="#F5F2F2" markup="html" fontSize="9.0" italic="true" vTextAlign="Middle">
+					<expression><![CDATA[$P{P_EXPLANATION_TEXT}]]></expression>
 					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 						<pen lineWidth="0.25" lineStyle="Solid"/>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -84,7 +86,7 @@
 				</element>
 				<element kind="textField" uuid="a42efaf0-a31a-4111-9746-dbce3979d44e" x="0" y="70" width="551" height="50" linkType="Reference" linkTarget="Self">
 					<expression><![CDATA[" "]]></expression>
-					<hyperlinkReferenceExpression><![CDATA[$P{P_MATRICULA_URL}]]></hyperlinkReferenceExpression>
+					<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
 				</element>
 			</band>
 		</groupHeader>
@@ -154,8 +156,8 @@
 	<columnFooter height="5" splitType="Stretch"/>
 	<pageFooter height="80" splitType="Stretch">
 		<element kind="textField" uuid="8c25c2e4-4b17-495c-a491-e009e19777a8" x="260" y="30" width="270" height="40" linkType="None" linkTarget="Self" hTextAlign="Left">
-			<expression><![CDATA[$P{P_FOOTER_UPLOAD_TEXT} + " " + $P{P_MATRICULA_URL}]]></expression>
-			<hyperlinkReferenceExpression><![CDATA[$P{P_MATRICULA_URL}]]></hyperlinkReferenceExpression>
+			<expression><![CDATA[$P{P_FOOTER_TEXT} + " " + $P{P_QR_CODE_URL}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
 		</element>
 		<element kind="textField" uuid="deb23d85-47bb-4de6-978e-113ff117188c" x="461" y="1" width="90" height="20" fontSize="10.0" bold="false" hTextAlign="Right" style="Column header">
 			<expression><![CDATA["Página "+$V{PAGE_NUMBER}
@@ -166,7 +168,7 @@
 		</element>
 		<element kind="component" uuid="c80f019c-d985-4723-8473-f0369bc8a28d" x="180" y="6" width="79" height="72">
 			<component kind="barcode4j:QRCode">
-				<codeExpression><![CDATA[$P{P_MATRICULA_URL}]]></codeExpression>
+				<codeExpression><![CDATA[$P{P_QR_CODE_URL}]]></codeExpression>
 			</component>
 		</element>
 		<element kind="line" uuid="2a2e3fa3-fdc7-45b1-ad76-a6c4c5ff5c4e" positionType="FixRelativeToBottom" mode="Opaque" x="1" y="1" width="553" height="1" backcolor="#030303">
@@ -174,11 +176,12 @@
 		</element>
 		<element kind="textField" uuid="f18edbd7-e969-4852-9668-4b7484b6e529" x="210" y="10" width="320" height="65" linkType="Reference" linkTarget="Self" hTextAlign="Right">
 			<expression><![CDATA[""]]></expression>
-			<hyperlinkReferenceExpression><![CDATA[$P{P_MATRICULA_URL}]]></hyperlinkReferenceExpression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
 			<hyperlinkTooltipExpression><![CDATA["Clique aqui para acessar o sistema de requerimento de matrícula"]]></hyperlinkTooltipExpression>
 		</element>
 		<element kind="textField" uuid="97641b47-ef1b-4de7-96aa-ffada9d58daa" x="10" y="40" width="161" height="21">
-			<expression><![CDATA["Curitiba, " + new SimpleDateFormat("dd").format(new java.util.Date()) + " de " +  new SimpleDateFormat("MMMM").format(new java.util.Date()) + " de " +  new SimpleDateFormat("YYYY").format(new java.util.Date())+"."]]></expression>
+			<printWhenExpression><![CDATA[$P{P_SHOW_FOOTER_DATE}]]></printWhenExpression>
+			<expression><![CDATA["Curitiba, " + new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new Locale("pt", "BR")).format(new java.util.Date())]]></expression>
 		</element>
 	</pageFooter>
 	<summary splitType="Stretch"/>

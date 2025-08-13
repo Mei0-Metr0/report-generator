@@ -1,0 +1,260 @@
+<jasperReport name="InscricoesHomologadasFULL" language="java" columnCount="1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd80ba8e-8774-4f11-addd-048a58377161">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Homologados.jrdax"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="ZebraStyle" backcolor="#FFFFFF">
+		<conditionalStyle backcolor="#FFF8E8">
+			<conditionExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+
+	<parameter name="P_TITLE" class="java.lang.String"/>
+	<parameter name="P_SUBTITLE" class="java.lang.String"/>
+	<parameter name="P_EXPLANATION_TEXT" class="java.lang.String"/>
+	<parameter name="P_UTFPR_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_PROCESS_LOGO_URL" class="java.lang.String"/>
+	<parameter name="P_SHOW_FOOTER_DATE" class="java.lang.Boolean"/>
+	<parameter name="P_FOOTER_TEXT" class="java.lang.String"/>
+	<parameter name="P_QR_CODE_URL" class="java.lang.String"/>
+	<parameter name="P_DEFAULT_CAMPUS_IMG_URL" class="java.lang.String"/>
+
+	<query language="csv"><![CDATA[]]></query>
+	<field name="Protocolo" class="java.lang.Integer"/>
+	<field name="Candidato" class="java.lang.String"/>
+	<field name="Cota" class="java.lang.String"/>
+	<field name="Campus1" class="java.lang.String"/>
+	<field name="Curso1" class="java.lang.String"/>
+	<field name="Campus2" class="java.lang.String"/>
+	<field name="Curso2" class="java.lang.String"/>
+	<sortField name="Candidato"/>
+
+	<background splitType="Stretch"/>
+	<title height="10" splitType="Stretch"/>
+	<pageHeader height="154" splitType="Stretch">
+		<element kind="image" uuid="90338acd-85f8-4873-98ba-2308873a486e" x="450" y="0" width="105" height="69" linkType="None" linkTarget="Self">
+			<expression><![CDATA[$P{P_PROCESS_LOGO_URL}]]></expression>
+		</element>
+		<element kind="textField" uuid="80051d2f-c71f-416a-9a09-9bd78a1a68f7" key="" mode="Opaque" x="90" y="0" width="360" height="40" backcolor="#FFCB00" markup="none" fontSize="13.0" bold="false" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_SUBTITLE}]]></expression>
+		</element>
+		<element kind="textField" uuid="f3bdfc7b-8ed3-452e-a19d-792aec282dea" stretchType="NoStretch" mode="Opaque" x="0" y="70" width="556" height="41" backcolor="#F5F2F2" markup="html" fontSize="9.0" italic="true" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_EXPLANATION_TEXT}]]></expression>
+			<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+				<pen lineWidth="0.25" lineStyle="Solid"/>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="0ca263e8-1db0-4f99-a09e-c25c424aa86f" key="" mode="Opaque" x="90" y="40" width="360" height="30" backcolor="#FFCB00" markup="none" fontSize="11.0" bold="true" underline="false" italic="false" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_TITLE}]]></expression>
+		</element>
+		<element kind="staticText" uuid="e2579ea7-0c18-4f41-887c-5fadc660d65f" mode="Opaque" x="467" y="111" width="43" height="20" backcolor="#FCF7CA" fontSize="5.0" italic="true">
+			<text><![CDATA[(T) - Tarde
+(N) - Noite
+(M) - Manhã]]></text>
+		</element>
+		<element kind="staticText" uuid="fbe2f853-d881-4ca3-afa7-0f3f05a76fea" mode="Opaque" x="510" y="111" width="45" height="20" backcolor="#FCF7CA" fontSize="5.0" italic="true">
+			<text><![CDATA[(Tec) - Tecnologia
+(Bac) - Bacharelado
+(Lic) - Licenciatura]]></text>
+		</element>
+		<element kind="staticText" uuid="1d64fe7f-8d63-43eb-96be-83c351c17309" mode="Opaque" x="171" y="140" width="201" height="14" backcolor="#EBEBEB" bold="true" hTextAlign="Center">
+			<text><![CDATA[Primeira Opção]]></text>
+		</element>
+		<element kind="line" uuid="2468de39-7dd2-4a7e-9042-27250b21dd71" x="372" y="140" width="1" height="14" forecolor="#E8E8E8"/>
+		<element kind="line" uuid="82150fd2-adea-4c31-99c1-9672059737f8" x="170" y="140" width="1" height="14" forecolor="#E8E8E8">
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="line" uuid="1dd2e036-7580-472c-949b-f21b8e17a88e" x="170" y="139" width="386" height="1" forecolor="#E8E8E8">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="staticText" uuid="21f12d98-0666-4506-a7c7-d7d3c5232251" mode="Opaque" x="372" y="140" width="183" height="14" backcolor="#EBEBEB" bold="true" hTextAlign="Center">
+			<text><![CDATA[Segunda Opção]]></text>
+		</element>
+		<element kind="line" uuid="14ac7eaa-2a02-457b-b498-17b776e2fab4" x="555" y="140" width="1" height="14" forecolor="#E8E8E8">
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="staticText" uuid="5647efe2-6ce7-4058-8c36-79b8203094ff" mode="Opaque" x="424" y="111" width="43" height="20" backcolor="#FCF7CA" fontSize="7.0" bold="true" italic="true" vTextAlign="Middle">
+			<text><![CDATA[Legenda]]></text>
+		</element>
+		<element kind="image" uuid="cb608ece-0424-42d9-91b4-2c1cd47e20ef" x="3" y="14" width="85" height="55">
+			<expression><![CDATA[$P{P_UTFPR_LOGO_URL}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="22" splitType="Stretch">
+		<element kind="staticText" uuid="0b82289b-ebfc-4392-8845-c438ea467820" x="30" y="0" width="90" height="20" fontSize="9.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Candidato]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d8171c5d-60ee-47c3-bd74-f457a03c094f"/>
+		</element>
+		<element kind="staticText" uuid="309be50a-59b6-4f4b-9447-7bfc1cca6f82" x="134" y="0" width="30" height="20" fontSize="9.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Cota]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="04f3e1bb-4268-437c-9f60-e02a2f31826e"/>
+		</element>
+		<element kind="staticText" uuid="eeab423a-33bb-499f-a535-07ad4326bde0" mode="Transparent" x="180" y="0" width="42" height="20" backcolor="#EBEBEB" fontSize="9.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Campus]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d94a580-cc5f-4a0b-9282-3238dea0fc42"/>
+		</element>
+		<element kind="staticText" uuid="b2e8e000-b753-4833-af8f-8e59379de6ca" mode="Transparent" x="240" y="0" width="132" height="20" backcolor="#EBEBEB" fontSize="9.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Curso]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdf37d40-a282-4b4e-90db-bf36ecc1842b"/>
+		</element>
+		<element kind="staticText" uuid="5b5be3e3-9bb4-4534-85b5-d4b2ca0eb18e" x="378" y="0" width="44" height="20" fontSize="9.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Campus]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef5c6501-1c78-401d-adaa-af9055a7429f"/>
+		</element>
+		<element kind="staticText" uuid="84e7ea85-7775-49cc-b890-a8550112ba84" x="435" y="0" width="114" height="20" fontSize="9.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Curso]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="be3cc841-c3f4-4efb-ad2f-f5a43f44ff20"/>
+		</element>
+		<element kind="line" uuid="9f98078e-4e98-46ee-ac54-a2c9fe256026" x="372" y="0" width="1" height="22" forecolor="#E8E8E8">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="line" uuid="7a03678b-52e2-4e07-98dd-53ceea2088a7" x="170" y="0" width="1" height="22" forecolor="#E8E8E8">
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="line" uuid="445ec55f-f2e7-46f9-a839-6d99b74d0178" x="555" y="0" width="1" height="22" forecolor="#E8E8E8">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="line" uuid="092bf615-28de-403a-845a-047e3c390fb3" x="0" y="21" width="555" height="1" forecolor="#E6E1E1">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<pen lineStyle="Solid"/>
+		</element>
+		<element kind="staticText" uuid="fe02d393-9989-4cb5-828a-a47cfcc46815" x="0" y="0" width="30" height="19" rotation="None" fontSize="9.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Prot.]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43fd4485-4786-47fb-a065-d54e8288699c"/>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<element kind="rectangle" uuid="a5f17d1c-d7ec-4aeb-aa05-9aa177d861b2" positionType="FixRelativeToBottom" mode="Opaque" x="-3" y="0" width="559" height="15" style="ZebraStyle">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<pen lineColor="#FFFFFF"/>
+			</element>
+			<element kind="textField" uuid="d2677c04-a2bf-44bf-ae6c-25360b687ce0" x="0" y="0" width="20" height="14" fontSize="5.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{Protocolo}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43fd4485-4786-47fb-a065-d54e8288699c"/>
+			</element>
+			<element kind="textField" uuid="88105463-cb81-4db7-9b9e-40741cdd1058" x="20" y="0" width="110" height="14" fontSize="5.0" textAdjust="StretchHeight" vTextAlign="Middle">
+				<expression><![CDATA[$F{Candidato}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d8171c5d-60ee-47c3-bd74-f457a03c094f"/>
+			</element>
+			<element kind="textField" uuid="5764beff-f3bc-400a-b247-bfeaf89519ae" x="134" y="-1" width="30" height="14" fontSize="5.0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{Cota}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="04f3e1bb-4268-437c-9f60-e02a2f31826e"/>
+			</element>
+			<element kind="textField" uuid="68baef53-5d88-4215-ac1c-948b6976724a" mode="Transparent" x="172" y="0" width="55" height="14" backcolor="#EBEBEB" fontSize="5.0" textAdjust="ScaleFont" vTextAlign="Middle">
+				<expression><![CDATA[$F{Campus1}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d94a580-cc5f-4a0b-9282-3238dea0fc42"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="textField" uuid="70aa677f-5f2b-44fa-a70d-2312d3d4e321" mode="Transparent" x="232" y="0" width="140" height="14" forecolor="#030303" backcolor="#EBEBEB" fontSize="5.0" textAdjust="ScaleFont" vTextAlign="Middle">
+				<expression><![CDATA[$F{Curso1}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdf37d40-a282-4b4e-90db-bf36ecc1842b"/>
+			</element>
+			<element kind="textField" uuid="66f9225c-6283-4189-877c-7965427b50c4" x="374" y="0" width="55" height="14" fontSize="5.0" textAdjust="ScaleFont" vTextAlign="Middle">
+				<expression><![CDATA[$F{Campus2}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef5c6501-1c78-401d-adaa-af9055a7429f"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="textField" uuid="032f44d6-fe16-4ef4-a578-8ffa331cf828" x="435" y="0" width="119" height="14" forecolor="#030303" fontSize="5.0" textAdjust="ScaleFont" vTextAlign="Middle">
+				<expression><![CDATA[$F{Curso2}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="be3cc841-c3f4-4efb-ad2f-f5a43f44ff20"/>
+			</element>
+			<element kind="line" uuid="92ea398a-2839-46e1-b084-0c1fb6dea507" x="0" y="14" width="555" height="1" forecolor="#E6E1E1">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<pen lineStyle="Dashed"/>
+			</element>
+			<element kind="line" uuid="1a1b67fc-4c18-4d8c-85a6-fc09b0284cf0" stretchType="ElementGroupHeight" x="372" y="-1" width="1" height="16" forecolor="#E8E8E8">
+				<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="line" uuid="fd8bc6f8-30ba-445e-9075-6718b2b1aa28" x="170" y="-1" width="1" height="16" forecolor="#E8E8E8">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="line" uuid="fdd01514-5c2c-48bc-a18a-b0de2a496b49" x="555" y="-1" width="1" height="16" forecolor="#E8E8E8">
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			</element>
+			<element kind="staticText" uuid="0b946774-629a-45c2-806c-dda85483d0be" x="227" y="0" width="5" height="14" fontSize="5.0" hTextAlign="Center" vTextAlign="Middle">
+				<text><![CDATA[-]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			</element>
+			<element kind="textField" uuid="f7e4e0d8-0db5-40ba-9520-65f7cebca759" x="429" y="4" width="15" height="10" fontSize="5.0">
+				<expression><![CDATA[$F{Campus2}.isBlank() ? " " : "-"]]></expression>
+				<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch"/>
+	<pageFooter height="107" splitType="Stretch">
+		<element kind="textField" uuid="793e4e0a-1286-4980-9667-1ecd5c8ed52c" mode="Opaque" x="200" y="60" width="319" height="14" forecolor="#FFFFFF" backcolor="#0169CD" linkType="Reference" linkTarget="Self">
+			<printWhenExpression><![CDATA[$P{P_QR_CODE_URL} != null && !$P{P_QR_CODE_URL}.isEmpty()]]></printWhenExpression>
+			<expression><![CDATA[$P{P_QR_CODE_URL}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
+			<hyperlinkTooltipExpression><![CDATA["Clique aqui para ir ao cronograma"]]></hyperlinkTooltipExpression>
+		</element>
+		<element kind="textField" uuid="96955233-a7ec-4125-9007-f70b38761bf7" x="430" y="16" width="80" height="20" fontSize="10.0" bold="false" hTextAlign="Right">
+			<expression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></expression>
+		</element>
+		<element kind="textField" uuid="59c54b8e-db73-4164-8133-e26aea0e626e" x="510" y="16" width="40" height="20" fontSize="10.0" evaluationTime="Report" bold="false">
+			<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="line" uuid="5b1a32a9-04cf-4367-9771-34538537ade2" x="0" y="10" width="555" height="1" forecolor="#EBD757">
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+		</element>
+		<element kind="component" uuid="36c469b4-0af4-454b-90cf-c42198a99240" key="" x="106" y="11" width="93" height="67">
+			<printWhenExpression><![CDATA[$P{P_QR_CODE_URL} != null && !$P{P_QR_CODE_URL}.isEmpty()]]></printWhenExpression>
+			<component kind="barcode4j:QRCode">
+				<codeExpression><![CDATA[$P{P_QR_CODE_URL}]]></codeExpression>
+			</component>
+			<property name="com.jaspersoft.studio.element.name" value="Cronograma"/>
+		</element>
+		<element kind="textField" uuid="d8638dff-c0e6-4238-b2ac-e83284d2f5af" x="220" y="16" width="190" height="20" fontSize="10.0" bold="false">
+			<printWhenExpression><![CDATA[$P{P_SHOW_FOOTER_DATE}]]></printWhenExpression>
+			<expression><![CDATA["Curitiba, " + new SimpleDateFormat("dd").format(new java.util.Date()) + " de " +  new SimpleDateFormat("MMMM").format(new java.util.Date()) + " de " +  new SimpleDateFormat("YYYY").format(new java.util.Date())+"."]]></expression>
+		</element>
+		<element kind="image" uuid="c018548a-3198-4d98-b34e-acc977200f11" x="0" y="10" width="106" height="69">
+			<expression><![CDATA[$P{P_DEFAULT_CAMPUS_IMG_URL}]]></expression>
+		</element>
+		<element kind="textField" uuid="b8ec3f66-3929-4610-8b27-691e66da37eb" mode="Opaque" x="200" y="42" width="170" height="14" forecolor="#FFFFFF" backcolor="#0169CD" linkType="Reference" linkTarget="Self">
+			<expression><![CDATA[$P{P_FOOTER_TEXT}]]></expression>
+			<hyperlinkReferenceExpression><![CDATA[$P{P_QR_CODE_URL}]]></hyperlinkReferenceExpression>
+			<hyperlinkTooltipExpression><![CDATA["Clique aqui para ir ao portal do candidato"]]></hyperlinkTooltipExpression>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
