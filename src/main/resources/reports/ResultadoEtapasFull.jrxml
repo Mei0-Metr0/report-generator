@@ -419,6 +419,7 @@
 			<property name="com.jaspersoft.studio.unit.y" value="px"/>
 		</element>
 		<element kind="textField" uuid="97641b47-ef1b-4de7-96aa-ffada9d58daa" x="394" y="10" width="161" height="21" textAdjust="ScaleFont">
+			<printWhenExpression><![CDATA[$P{P_SHOW_FOOTER_DATE}]]></printWhenExpression>
 			<expression><![CDATA["Curitiba, " + new SimpleDateFormat("dd").format(new java.util.Date()) + " de " +  new SimpleDateFormat("MMMM").format(new java.util.Date()) + " de " +  new SimpleDateFormat("YYYY").format(new java.util.Date())+"."]]></expression>
 			<property name="com.jaspersoft.studio.unit.x" value="px"/>
 		</element>

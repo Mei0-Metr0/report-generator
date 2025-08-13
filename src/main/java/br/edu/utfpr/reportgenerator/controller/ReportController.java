@@ -22,7 +22,7 @@ import java.util.Map;
 public class ReportController {
 
     private final ReportService reportService;
-    private final ImageSetService imageSetService; // Injeta o novo serviço
+    private final ImageSetService imageSetService;
 
     public ReportController(ReportService reportService, ImageSetService imageSetService) {
         this.reportService = reportService;
@@ -33,7 +33,6 @@ public class ReportController {
     public String homePage(Model model) {
         model.addAttribute("selectionProcesses", new String[]{"+Enem", "SiSU", "Vestibular", "PSS", "Reopção e Transferência", "Aproveitamento"});
         model.addAttribute("reportTypes", ReportType.values());
-        // Adiciona a lista de temas de imagem ao modelo para popular a ComboBox
         model.addAttribute("imageSets", imageSetService.getAvailableImageSets());
         return "index";
     }
@@ -45,11 +44,12 @@ public class ReportController {
             @RequestParam("reportTitle") String reportTitle,
             @RequestParam("reportSubtitle") String reportSubtitle,
             @RequestParam("explanationText") String explanationText,
-            @RequestParam("imageSetId") String imageSetId, // Recebe o ID do tema escolhido
+            @RequestParam("imageSetId") String imageSetId,
             @RequestParam(value = "showFooterDate", required = false) boolean showFooterDate,
             @RequestParam("footerText") String footerText,
             @RequestParam("qrCodeUrl") String qrCodeUrl,
-            @RequestParam("csvEncoding") String csvEncoding, // NOVO PARÂMETRO
+            @RequestParam("csvEncoding") String csvEncoding,
+            @RequestParam("csvSeparator") String csvSeparator,
             RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
@@ -57,28 +57,29 @@ public class ReportController {
             return ResponseEntity.status(302).header(HttpHeaders.LOCATION, "/").build();
         }
 
-        // Busca o conjunto de imagens selecionado pelo ID
         ImageSet selectedImageSet = imageSetService.findById(imageSetId)
                 .orElseThrow(() -> new IllegalArgumentException("Conjunto de imagens inválido: " + imageSetId));
 
         try {
+            if (csvSeparator == null || csvSeparator.length() != 1) {
+                csvSeparator = ";";
+            }
+
+            char separatorChar = csvSeparator.charAt(0);
+
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("P_TITLE", reportTitle);
             parameters.put("P_SUBTITLE", reportSubtitle);
             parameters.put("P_EXPLANATION_TEXT", explanationText);
-
-            // Usa os caminhos do conjunto de imagens selecionado
             parameters.put("P_UTFPR_LOGO_URL", selectedImageSet.utfprLogoPath());
             parameters.put("P_PROCESS_LOGO_URL", selectedImageSet.processLogoPath());
-
             parameters.put("P_DEFAULT_CAMPUS_IMG_URL", "images/campi/ct.png");
             parameters.put("P_SHOW_FOOTER_DATE", showFooterDate);
             parameters.put("P_FOOTER_TEXT", footerText);
             parameters.put("P_QR_CODE_URL", qrCodeUrl);
 
             ReportType reportType = ReportType.valueOf(reportTypeName);
-            // PASSA O ENCODING PARA O SERVIÇO
-            byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters, csvEncoding);
+            byte[] pdfBytes = reportService.generatePdfReport(reportType, file.getInputStream(), parameters, csvEncoding, separatorChar);
 
             String filename = reportType.name().toLowerCase() + "_report.pdf";
 

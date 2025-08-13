@@ -20,12 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedReportOption = reportTypeSelect.options[reportTypeSelect.selectedIndex];
         if (!selectedReportOption) return;
 
-        // --- 1. Atualizar Instruções e Campos Obrigatórios (lógica existente) ---
         const instructions = selectedReportOption.dataset.instructions || 'Selecione um tipo de relatório para ver as instruções.';
         const requiredHeaders = selectedReportOption.dataset.requiredHeaders || '';
 
         instructionsText.textContent = instructions;
-        requiredFieldsList.innerHTML = ''; // Limpa a lista anterior
+        requiredFieldsList.innerHTML = '';
         requiredHeaders.split(';').forEach(header => {
             if (header) {
                 const li = document.createElement('li');
@@ -34,37 +33,31 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // --- 2. Preencher campos do relatório com textos padrão ---
         const selectedProcessText = selectionProcessSelect.options[selectionProcessSelect.selectedIndex].text;
-
         const titleTemplate = selectedReportOption.dataset.defaultTitleTemplate || '';
         const subtitle = selectedReportOption.dataset.defaultSubtitle || '';
         const explanation = selectedReportOption.dataset.defaultExplanation || '';
         const qrCodeUrl = selectedReportOption.dataset.defaultQrCodeUrl || '';
         const footerText = selectedReportOption.dataset.defaultFooterText || '';
 
-        // Formata o título com o nome do processo seletivo
         reportTitleInput.value = titleTemplate.replace('%s', selectedProcessText.toUpperCase());
-
-        // Preenche os outros campos
         reportSubtitleTextarea.value = subtitle;
         explanationTextTextarea.value = explanation;
         qrCodeUrlInput.value = qrCodeUrl;
         footerTextTextarea.value = footerText;
     }
 
-    // Adiciona os listeners de eventos para os seletores
     reportTypeSelect.addEventListener('change', updateDynamicFormFields);
     selectionProcessSelect.addEventListener('change', updateDynamicFormFields);
 
     // Chama a função uma vez no carregamento da página para inicializar o formulário
     updateDynamicFormFields();
 
-    // --- Lógica do botão de validação do CSV ---
     const validateBtn = document.getElementById('validateCsvBtn');
     const csvInput = document.getElementById('csvFile');
     const validationContainer = document.getElementById('validation-message-container');
     const encodingSelect = document.getElementById('csvEncoding');
+    const separatorSelect = document.getElementById('csvSeparator');
 
     /**
      * Exibe uma mensagem de validação na tela.
@@ -72,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {boolean} isSuccess - True para mensagem de sucesso (verde), false para erro (vermelho).
      */
     function displayValidationMessage(message, isSuccess) {
-        validationContainer.innerHTML = ''; // Limpa mensagens anteriores
+        validationContainer.innerHTML = '';
         const messageDiv = document.createElement('div');
         messageDiv.className = `alert ${isSuccess ? 'alert-success' : 'alert-danger'}`;
         messageDiv.innerHTML = message;
@@ -81,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (validateBtn) {
         validateBtn.addEventListener('click', function() {
-            validationContainer.innerHTML = ''; // Limpa ao clicar
+            validationContainer.innerHTML = '';
 
             if (csvInput.files.length === 0) {
                 displayValidationMessage('Por favor, selecione um arquivo CSV para verificação.', false);
@@ -93,6 +86,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const requiredHeadersRaw = selectedReportOption.dataset.requiredHeaders;
             const requiredHeaders = (requiredHeadersRaw || '').split(';').map(h => h.trim()).filter(Boolean);
 
+            const selectedSeparator = separatorSelect.value;
+
             if (requiredHeaders.length === 0) {
                 displayValidationMessage('<strong>Sucesso!</strong> Este tipo de relatório não exige colunas específicas para verificação.', true);
                 return;
@@ -103,11 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.onload = function(e) {
                 try {
                     const content = e.target.result;
-                    // Pega a primeira linha e remove espaços em branco e o BOM (Byte Order Mark), se houver.
                     const firstLine = content.split(/[\r\n]+/)[0].trim().replace(/^\uFEFF/, '');
-                    // Remove aspas que podem envolver os cabeçalhos
-                    const fileHeaders = firstLine.split(';').map(h => h.trim().replace(/^"|"$/g, ''));
-
+                    const fileHeaders = firstLine.split(selectedSeparator).map(h => h.trim().replace(/^"|"$/g, ''));
                     const fileHeadersSet = new Set(fileHeaders);
                     const missingHeaders = requiredHeaders.filter(header => !fileHeadersSet.has(header));
 
@@ -130,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 displayValidationMessage('Não foi possível ler o arquivo. Verifique as permissões ou se o arquivo não está corrompido.', false);
             };
 
-            // Usa o encoding selecionado na interface
             const selectedEncoding = encodingSelect.value;
             reader.readAsText(file, selectedEncoding);
         });
