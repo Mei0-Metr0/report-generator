@@ -12,7 +12,7 @@ import java.util.Map;
 @Service
 public class ReportService {
 
-    public byte[] generatePdfReport(ReportType reportType, InputStream csvInputStream, Map<String, Object> parameters) throws JRException, UnsupportedEncodingException {
+    public byte[] generatePdfReport(ReportType reportType, InputStream csvInputStream, Map<String, Object> parameters, String encoding, char fieldDelimiter) throws JRException, UnsupportedEncodingException {
         // 1. Carrega o arquivo .jrxml
         InputStream jrxmlStream = getClass().getClassLoader().getResourceAsStream(reportType.getJrxmlPath());
         if (jrxmlStream == null) {
@@ -22,9 +22,9 @@ public class ReportService {
         // 2. Compila o relatório .jrxml para .jasper
         JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
 
-        // 3. Cria a fonte de dados a partir do CSV
-        JRCsvDataSource dataSource = new JRCsvDataSource(csvInputStream, "ISO-8859-1");
-        dataSource.setFieldDelimiter(';');
+        // 3. Cria a fonte de dados a partir do CSV usando o encoding e o separador selecionados
+        JRCsvDataSource dataSource = new JRCsvDataSource(csvInputStream, encoding);
+        dataSource.setFieldDelimiter(fieldDelimiter);
         dataSource.setUseFirstRowAsHeader(true);
 
         // 4. Preenche o relatório com os dados e os Parametros
